@@ -13,7 +13,7 @@ and open the template in the editor.
     </head>
     <body>
 
-        <form>
+        <form method="POST" id="myForm">
             <div class="container col-12">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
@@ -82,14 +82,20 @@ and open the template in the editor.
 
                                     <div class="form-group col-12">
                                         <input type="text"
+                                               readonly="true"
                                                class="form-control text-center"
                                                placeholder="Business Name">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-12">
-                                        <input type="text"
+                                        <input type="tel"
                                                class="form-control text-center"
+                                               name="companyNumber"
+                                               data-validation="custom"
+                                               data-validation-regexp="^00971\d{9}$"
+                                               data-validation-optional="true"
+                                               data-validation-error-msg="Please enter a valid number(e.g 00971xxxxxxxxx)"
                                                data-toggle="popover"
                                                data-trigger="focus"
                                                data-placement="right"
@@ -101,6 +107,7 @@ and open the template in the editor.
                                     <div class="form-group col-12">
                                         <input type="text"
                                                class="form-control text-center"
+                                               readonly="true"
                                                placeholder="Business Email">
                                     </div>
                                 </div>
@@ -122,17 +129,36 @@ and open the template in the editor.
                         <div class="row">
                             <div class="col-12">
                                 <textarea class="form-control text-center"
+                                          name="companyAbout"
+                                          data-validation="length"
+                                          data-validation-length="25-100"
+                                          data-validation-error-msg="Text should be at least 25 characters"
                                           data-toggle="popover" 
                                           data-trigger="focus"
                                           data-content="Write a short description about the company"
                                           data-placement="top"
+                                          id="about"
                                           placeholder="About the company"></textarea>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="small"><span id="maxlength">100</span> characters left</p>
+
+
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg-6 mb-2">
                                 <input type="text"
                                        class="form-control text-center"
+                                       name="companyWhatsapp"
+                                       data-validation="custom"
+                                       data-validation-regexp="^971\d{9}$"
+                                       data-validation-optional="true"
+                                       data-validation-error-msg="Please enter a valid number(e.g 00971xxxxxxxxx)"
                                        data-toggle="popover"
                                        data-trigger="focus"
                                        data-placement="top"
@@ -140,8 +166,11 @@ and open the template in the editor.
                                        placeholder="Whatsapp Number">
                             </div>
                             <div class="col-lg-6 mb-2">
-                                <input type="text"
+                                <input type="url"
+                                       name="companyWebsite"
                                        class="form-control text-center"
+                                       data-validation="url"
+                                       data-validation-optional="true"
                                        data-toggle="popover"
                                        data-trigger="focus"
                                        data-placement="top"
@@ -151,8 +180,11 @@ and open the template in the editor.
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg-6 mb-2">
-                                <input type="text"
+                                <input type="url"
+                                       name="companyInstagram"
                                        class="form-control text-center"
+                                       data-validation="url"
+                                       data-validation-optional="true"
                                        data-toggle="popover"
                                        data-trigger="focus"
                                        data-placement="top"
@@ -160,13 +192,29 @@ and open the template in the editor.
                                        placeholder="Instagram Account">
                             </div>
                             <div class="col-lg-6">
-                                <input type="text"
-                                       class="form-control text-center"
-                                       data-toggle="popover"
-                                       data-trigger="focus"
-                                       data-placement="top"
-                                       data-content="5 Keywords allowed without any space and format as follow keyword1,keyword2,"
-                                       placeholder="Keywords">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="text"
+                                               data-validation="custom"
+                                               data-validation-regexp="^[a-zA-Z]+((,)?[a-zA-Z]+){0,4}$"
+                                               data-validation-error-msg="At least 1 keyword and maximum of 5, each keyword contains letters only"
+                                               name="companyKeyword"
+                                               id="keyword"
+                                               class="form-control text-center"
+                                               data-toggle="popover"
+                                               data-trigger="focus"
+                                               data-placement="top"
+                                               data-content="5 Keywords allowed without any space and format as follow keyword1,keyword2,"
+                                               placeholder="Keywords">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="small"><span id="maxlength1">100</span> characters left</p>
+
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -185,6 +233,9 @@ and open the template in the editor.
                         <div class="row mt-4 mb-2">
                             <div class="col-12  mx-auto">
                                 <input type="text"
+                                       name="companyLocation"
+                                       data-validation="url"
+                                       data-validation-optional="true"
                                        class="form-control text-center"
                                        data-toggle="popover"
                                        data-trigger="focus"
@@ -195,12 +246,12 @@ and open the template in the editor.
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg-6 mb-2">
-                                <select class="form-control">
+                                <select name="companyCountry" class="form-control">
                                     <option selected="">UAE</option>
                                 </select>
                             </div>
                             <div  class="col-lg-6">
-                                <select class="form-control">
+                                <select name="companyCity" class="form-control">
                                     <option>Abu Dhabi</option>
                                     <option>Abu Dhabi-AlAin</option>
                                     <option>Abu Dhabi-Western Region</option>
@@ -229,7 +280,7 @@ and open the template in the editor.
                             <div class="col-lg-5">
 
                                 <label for="subcat">Select a Sub-Category</label>
-                                <select name="from" id="subcat" class="form-control" size="8" multiple="multiple">
+                                <select  id="subcat" class="form-control" size="8" multiple="multiple">
                                     <option value="1">C++</option>
                                     <option value="2">C#</option>
                                     <option value="3">Haskell</option>
@@ -253,7 +304,11 @@ and open the template in the editor.
                             </div>
                             <div class="col-lg-5">
                                 <label for="subcat_to">Selected Sub-Categories</label>
-                                <select name="to" id="subcat_to" class="form-control" size="8" multiple="multiple">
+                                <select 
+                                    
+                                  
+                                    name="sub[]"
+                                    id="subcat_to" class="form-control" size="8" multiple="multiple">
                                 </select>
                             </div>
                         </div>
@@ -265,7 +320,7 @@ and open the template in the editor.
                         <div class="row mt-2">
                             <div class="col-lg-5">
                                 <label for="subsubcat">Select a Sub-Sub-Category</label>
-                                <select name="from" id="subsubcat" class="form-control" size="8" multiple="multiple">
+                                <select  id="subsubcat" class="form-control" size="8" multiple="multiple">
                                     <option value="1">C++</option>
                                     <option value="2">C#</option>
                                     <option value="3">Haskell</option>
@@ -289,7 +344,7 @@ and open the template in the editor.
                             </div>
                             <div class="col-lg-5">
                                 <label for="subsubcat_to">Selected Sub-Sub-Categories</label>
-                                <select name="to" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
+                                <select name="subsub" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
                                 </select>
                             </div>
                         </div>
@@ -304,7 +359,7 @@ and open the template in the editor.
 
                             </div>
                             <div class="col-lg-6 mb-2 ">
-                                <button class="btn btn-success btn-block " type="submit">Edit</button>
+                                <button class="btn btn-success btn-block " id="editbtn" onclick="enableForm()" type="button">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -320,37 +375,59 @@ and open the template in the editor.
         <script src="js/bootstrap.min.js"></script>
         <script src="js/multiselect.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
 
         <script type="text/javascript">
 
 
-            $(function () {
-                $('[data-toggle="popover"]').popover()
-            })
-            $('#subcat').multiselect(
-                    {
-                        search: {
-                            left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                            right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                        },
-                        fireSearch: function (value) {
-                            return value.length > 2;
-                        }
-                    }
-            );
-            $('#subsubcat').multiselect(
-                    {
-                        search: {
-                            left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                            right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                        },
-                        fireSearch: function (value) {
-                            return value.length > 2;
-                        }
-                    }
+            function enableForm()
+            {
+                $("#myForm :input").prop("disabled", false);
+            }
+            $('#about').restrictLength($('#maxlength'));
+            $('#keyword').restrictLength($('#maxlength1'));
 
-            );
+
+            $(function () {
+                $("#myForm :input").prop("disabled", true);
+                $("#editbtn").prop("disabled",false);
+                
+                $('[data-toggle="popover"]').popover();
+                $.validate({modules: 'file'
+
+
+
+
+                });
+                $('#subcat').multiselect(
+                        {
+                            
+ 
+                            
+                            search: {
+                                left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                                right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                            },
+                            fireSearch: function (value) {
+                                return value.length > 2;
+                            }
+                        }
+                );
+                $('#subsubcat').multiselect(
+                        {
+                            search: {
+                                left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                                right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                            },
+                            fireSearch: function (value) {
+                                return value.length > 2;
+                            }
+                        }
+
+                );
+            });
+
             document.getElementById("inputGroupFile01").onchange = function () {
                 var reader = new FileReader();
 
