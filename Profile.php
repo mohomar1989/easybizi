@@ -78,106 +78,152 @@ and open the template in the editor.
                         <div class="card">
                             <div class="card-header">General Information</div>
                             <div class="card-body">
-                        <div class="row">
+                                <div class="row">
 
-                            <div class="form-group col-12">
-                                <input type="text" class="form-control text-center" placeholder="Business Name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-12">
-                                <input type="text" class="form-control text-center" placeholder="Contact Number">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-12">
-                                <input type="text" class="form-control text-center" placeholder="Business Email">
-                            </div>
-                        </div>
+                                    <div class="form-group col-12">
+                                        <input type="text"
+                                               class="form-control text-center"
+                                               placeholder="Business Name">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <input type="text"
+                                               class="form-control text-center"
+                                               data-toggle="popover"
+                                               data-trigger="focus"
+                                               data-placement="right"
+                                               data-content="Company # e.g 00971*******"
+                                               placeholder="Contact Number">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <input type="text"
+                                               class="form-control text-center"
+                                               placeholder="Business Email">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-               
-                
-                
-                
+
+
+
+
                 <div class="card mt-2">
-                    
+
                     <div class="card-header">Contact Information</div>
                     <div class="card-body">
-                
-                        
-                <div class="row">
-                    <div class="col-12">
-                        <textarea class="form-control text-center" data-toggle="popover" data-trigger="focus" data-content="" data-placement="top" placeholder="About"></textarea>
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <textarea class="form-control text-center"
+                                          data-toggle="popover" 
+                                          data-trigger="focus"
+                                          data-content="Write a short description about the company"
+                                          data-placement="top"
+                                          placeholder="About the company"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-6 mb-2">
+                                <input type="text"
+                                       class="form-control text-center"
+                                       data-toggle="popover"
+                                       data-trigger="focus"
+                                       data-placement="top"
+                                       data-content="Whatsapp# e.g 9715********"
+                                       placeholder="Whatsapp Number">
+                            </div>
+                            <div class="col-lg-6 mb-2">
+                                <input type="text"
+                                       class="form-control text-center"
+                                       data-toggle="popover"
+                                       data-trigger="focus"
+                                       data-placement="top"
+                                       data-content="Website link https://******"
+                                       placeholder="Business Website">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-6 mb-2">
+                                <input type="text"
+                                       class="form-control text-center"
+                                       data-toggle="popover"
+                                       data-trigger="focus"
+                                       data-placement="top"
+                                       data-content="Instagram link https://******"
+                                       placeholder="Instagram Account">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text"
+                                       class="form-control text-center"
+                                       data-toggle="popover"
+                                       data-trigger="focus"
+                                       data-placement="top"
+                                       data-content="5 Keywords allowed without any space and format as follow keyword1,keyword2,"
+                                       placeholder="Keywords">
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-lg-6 mb-2">
-                        <input type="text" class="form-control text-center" placeholder="Whatsapp Number">
-                    </div>
-                    <div class="col-lg-6 mb-2">
-                        <input type="text" class="form-control text-center" placeholder="Business Website">
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-lg-6 mb-2">
-                        <input type="text" class="form-control text-center" placeholder="Instagram Account">
-                    </div>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control text-center" placeholder="Keywords">
-                    </div>
-                </div>
-               
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
                 <div class="card mt-2">
                     <div class="card-header">Location Information</div>
                     <div class="card-body">
-                
-                 <div class="row mt-4 mb-2">
-                    <div class="col-12  mx-auto">
-                        <input type="text" class="form-control text-center" placeholder="Google Maps Link">
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-lg-6 mb-2">
-                        <select class="form-control">
-                            <option selected="">UAE</option>
-                        </select>
-                    </div>
-                    <div  class="col-lg-6">
-                        <select class="form-control">
-                            <option>Abu Dhabi</option>
-                            <option>Abu Dhabi-AlAin</option>
-                            <option>Abu Dhabi-Western Region</option>
-                            <option>Dubai</option> 
-                            <option>Sharjah</option>
-                            <option>Ajman</option>
-                            <option>Um AlQuwain</option>
-                            <option>Ras Al Khaima</option>
-                            <option>Fujeirah</option>
-                        </select>
+
+                        <div class="row mt-4 mb-2">
+                            <div class="col-12  mx-auto">
+                                <input type="text"
+                                       class="form-control text-center"
+                                       data-toggle="popover"
+                                       data-trigger="focus"
+                                       data-placement="top"
+                                       data-content="Google map link https://******"
+                                       placeholder="Google Maps Link">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-6 mb-2">
+                                <select class="form-control">
+                                    <option selected="">UAE</option>
+                                </select>
+                            </div>
+                            <div  class="col-lg-6">
+                                <select class="form-control">
+                                    <option>Abu Dhabi</option>
+                                    <option>Abu Dhabi-AlAin</option>
+                                    <option>Abu Dhabi-Western Region</option>
+                                    <option>Dubai</option> 
+                                    <option>Sharjah</option>
+                                    <option>Ajman</option>
+                                    <option>Um AlQuwain</option>
+                                    <option>Ras Al Khaima</option>
+                                    <option>Fujeirah</option>
+                                </select>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 
-                        
-                    </div>
-                </div>
-                
-                
-                
-                
-                
+
+
+
+
                 <div class="card mt-2">
+                    <div class="card-header"> Sub Category</div>
                     <div class="card-body">
                         <div class="row mt-2">
                             <div class="col-lg-5">
@@ -214,6 +260,7 @@ and open the template in the editor.
                     </div>
                 </div>
                 <div class="card mt-2">
+                    <div class="card-header"> Sub of sub Category</div>
                     <div class="card-body">
                         <div class="row mt-2">
                             <div class="col-lg-5">
@@ -251,14 +298,14 @@ and open the template in the editor.
                 <div class="row mt-5">
                     <div class="col-3 mx-auto">
                         <div class="row">
-                    <div class="col-lg-6 mb-2 ">
-                        <button class="btn btn-success btn-block " type="submit">Login</button>
-                        
+                            <div class="col-lg-6 mb-2 ">
+                                <button class="btn btn-success btn-block " type="submit">Submit</button>
 
-                    </div>
-                    <div class="col-lg-6 mb-2 ">
-                        <button class="btn btn-success btn-block " type="submit">Login</button>
-                    </div>
+
+                            </div>
+                            <div class="col-lg-6 mb-2 ">
+                                <button class="btn btn-success btn-block " type="submit">Edit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
