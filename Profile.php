@@ -25,7 +25,7 @@ and open the template in the editor.
 
                     <div id="firstNav" class="collapse navbar-collapse">
 
-                        <ul class="navbar-nav mr-auto">
+                        <ul class="navbar-nav  mr-auto">
                             <li  class="nav-item">
                                 <a class="nav-link active ">Profile</a>
                             </li>
@@ -75,6 +75,9 @@ and open the template in the editor.
                     </div>
 
                     <div class="col-lg-6" >
+                        <div class="card">
+                            <div class="card-header">General Information</div>
+                            <div class="card-body">
                         <div class="row">
 
                             <div class="form-group col-12">
@@ -91,11 +94,21 @@ and open the template in the editor.
                                 <input type="text" class="form-control text-center" placeholder="Business Email">
                             </div>
                         </div>
-
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <hr/>
+               
+                
+                
+                
+                <div class="card mt-2">
+                    
+                    <div class="card-header">Contact Information</div>
+                    <div class="card-body">
+                
+                        
                 <div class="row">
                     <div class="col-12">
                         <textarea class="form-control text-center" data-toggle="popover" data-trigger="focus" data-content="" data-placement="top" placeholder="About"></textarea>
@@ -106,7 +119,7 @@ and open the template in the editor.
                         <input type="text" class="form-control text-center" placeholder="Whatsapp Number">
                     </div>
                     <div class="col-lg-6 mb-2">
-                        <input type="text" class="form-control text-center" placeholder="Google Maps Link">
+                        <input type="text" class="form-control text-center" placeholder="Business Website">
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -117,9 +130,22 @@ and open the template in the editor.
                         <input type="text" class="form-control text-center" placeholder="Keywords">
                     </div>
                 </div>
-                <div class="row mt-4 mb-2">
-                    <div class="col-8  mx-auto">
-                        <input type="text" class="form-control text-center" placeholder="Business Website">
+               
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                <div class="card mt-2">
+                    <div class="card-header">Location Information</div>
+                    <div class="card-body">
+                
+                 <div class="row mt-4 mb-2">
+                    <div class="col-12  mx-auto">
+                        <input type="text" class="form-control text-center" placeholder="Google Maps Link">
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -143,64 +169,100 @@ and open the template in the editor.
                     </div>
                 </div>
 
-                <div class="row mt-2">
-                    <div class="col-lg-5">
-                        <select name="from" id="subcat" class="form-control" size="8" multiple="multiple">
-                            <option value="1">C++</option>
-                            <option value="2">C#</option>
-                            <option value="3">Haskell</option>
-                            <option value="4">Java</option>
-                            <option value="5">JavaScript</option>
-                            <option value="6">Lisp</option>
-                            <option value="7">Lua</option>
-                            <option value="8">MATLAB</option>
-                            <option value="9">NewLISP</option>
-                            <option value="10">PHP</option>
-                            <option value="11">Perl</option>
-                            <option value="12">SQL</option>
-                            <option value="13">Unix shell</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2">
-                        <button type="button" id="subcat_rightAll" class="btn btn-block"><i class="fas fa-angle-double-right"></i></button>
-                        <button type="button" id="subcat_rightSelected" class="btn btn-block"><i class="fas fa-angle-right"></i></button>
-                        <button type="button" id="subcat_leftSelected" class="btn btn-block"><i class="fas fa-angle-left"></i></button>
-                        <button type="button" id="subcat_leftAll" class="btn btn-block"><i class="fas fa-angle-double-left"></i></button>
-                    </div>
-                    <div class="col-lg-5">
-                        <select name="to" id="subcat_to" class="form-control" size="8" multiple="multiple">
-                        </select>
+                        
                     </div>
                 </div>
-                  <div class="row mt-2">
-                    <div class="col-lg-5">
-                        <select name="from" id="subsubcat" class="form-control" size="8" multiple="multiple">
-                            <option value="1">C++</option>
-                            <option value="2">C#</option>
-                            <option value="3">Haskell</option>
-                            <option value="4">Java</option>
-                            <option value="5">JavaScript</option>
-                            <option value="6">Lisp</option>
-                            <option value="7">Lua</option>
-                            <option value="8">MATLAB</option>
-                            <option value="9">NewLISP</option>
-                            <option value="10">PHP</option>
-                            <option value="11">Perl</option>
-                            <option value="12">SQL</option>
-                            <option value="13">Unix shell</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2">
-                        <button type="button" id="subsubcat_rightAll" class="btn btn-block"><i class="fas fa-angle-double-right"></i></button>
-                        <button type="button" id="subsubcat_rightSelected" class="btn btn-block"><i class="fas fa-angle-right"></i></button>
-                        <button type="button" id="subsubcat_leftSelected" class="btn btn-block"><i class="fas fa-angle-left"></i></button>
-                        <button type="button" id="subsubcat_leftAll" class="btn btn-block"><i class="fas fa-angle-double-left"></i></button>
-                    </div>
-                    <div class="col-lg-5">
-                        <select name="to" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
-                        </select>
+                
+                
+                
+                
+                
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <div class="row mt-2">
+                            <div class="col-lg-5">
+
+                                <label for="subcat">Select a Sub-Category</label>
+                                <select name="from" id="subcat" class="form-control" size="8" multiple="multiple">
+                                    <option value="1">C++</option>
+                                    <option value="2">C#</option>
+                                    <option value="3">Haskell</option>
+                                    <option value="4">Java</option>
+                                    <option value="5">JavaScript</option>
+                                    <option value="6">Lisp</option>
+                                    <option value="7">Lua</option>
+                                    <option value="8">MATLAB</option>
+                                    <option value="9">NewLISP</option>
+                                    <option value="10">PHP</option>
+                                    <option value="11">Perl</option>
+                                    <option value="12">SQL</option>
+                                    <option value="13">Unix shell</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2 my-auto">
+                                <button type="button" id="subcat_rightAll" class="btn btn-block"><i class="fas fa-angle-double-right"></i></button>
+                                <button type="button" id="subcat_rightSelected" class="btn btn-block"><i class="fas fa-angle-right"></i></button>
+                                <button type="button" id="subcat_leftSelected" class="btn btn-block"><i class="fas fa-angle-left"></i></button>
+                                <button type="button" id="subcat_leftAll" class="btn btn-block"><i class="fas fa-angle-double-left"></i></button>
+                            </div>
+                            <div class="col-lg-5">
+                                <label for="subcat_to">Selected Sub-Categories</label>
+                                <select name="to" id="subcat_to" class="form-control" size="8" multiple="multiple">
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <div class="row mt-2">
+                            <div class="col-lg-5">
+                                <label for="subsubcat">Select a Sub-Sub-Category</label>
+                                <select name="from" id="subsubcat" class="form-control" size="8" multiple="multiple">
+                                    <option value="1">C++</option>
+                                    <option value="2">C#</option>
+                                    <option value="3">Haskell</option>
+                                    <option value="4">Java</option>
+                                    <option value="5">JavaScript</option>
+                                    <option value="6">Lisp</option>
+                                    <option value="7">Lua</option>
+                                    <option value="8">MATLAB</option>
+                                    <option value="9">NewLISP</option>
+                                    <option value="10">PHP</option>
+                                    <option value="11">Perl</option>
+                                    <option value="12">SQL</option>
+                                    <option value="13">Unix shell</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2 my-auto">
+                                <button type="button" id="subsubcat_rightAll" class="btn btn-block"><i class="fas fa-angle-double-right"></i></button>
+                                <button type="button" id="subsubcat_rightSelected" class="btn btn-block"><i class="fas fa-angle-right"></i></button>
+                                <button type="button" id="subsubcat_leftSelected" class="btn btn-block"><i class="fas fa-angle-left"></i></button>
+                                <button type="button" id="subsubcat_leftAll" class="btn btn-block"><i class="fas fa-angle-double-left"></i></button>
+                            </div>
+                            <div class="col-lg-5">
+                                <label for="subsubcat_to">Selected Sub-Sub-Categories</label>
+                                <select name="to" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-3 mx-auto">
+                        <div class="row">
+                    <div class="col-lg-6 mb-2 ">
+                        <button class="btn btn-success btn-block " type="submit">Login</button>
+                        
+
+                    </div>
+                    <div class="col-lg-6 mb-2 ">
+                        <button class="btn btn-success btn-block " type="submit">Login</button>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </form>
@@ -214,23 +276,34 @@ and open the template in the editor.
 
 
         <script type="text/javascript">
-            
-            
+
+
             $(function () {
-  $('[data-toggle="popover"]').popover()
-})
+                $('[data-toggle="popover"]').popover()
+            })
             $('#subcat').multiselect(
                     {
                         search: {
-            left: '<input type="text" name="q" class="form-control" placeholder="Search..." />',
-            right: '<input type="text" name="q" class="form-control" placeholder="Search..." />',
-        },
-        fireSearch: function(value) {
-            return value.length > 2;
-        }
+                            left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                            right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                        },
+                        fireSearch: function (value) {
+                            return value.length > 2;
+                        }
                     }
             );
-             $('#subsubcat').multiselect();
+            $('#subsubcat').multiselect(
+                    {
+                        search: {
+                            left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                            right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                        },
+                        fireSearch: function (value) {
+                            return value.length > 2;
+                        }
+                    }
+
+            );
             document.getElementById("inputGroupFile01").onchange = function () {
                 var reader = new FileReader();
 
