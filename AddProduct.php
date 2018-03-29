@@ -34,13 +34,13 @@ and open the template in the editor.
                         <li class="nav-item">
                             <a class="nav-link" href="RequestPage.php">Requests Page</a>
                         </li>
-                       
+
                     </ul>
-                      <ul class="navbar-nav ml-auto">
-                     <li  class="nav-item ">
+                    <ul class="navbar-nav ml-auto">
+                        <li  class="nav-item ">
                             <a class="nav-link" href="#">Logout</a>
                         </li>
-                      </ul>
+                    </ul>
 
                 </div>
 
@@ -51,36 +51,159 @@ and open the template in the editor.
                 </ol>
             </nav>
 
-            
 
 
-            <div class="row">
-                <div class="col-sm bg-primary">
-                    helo
+
+            <form>
+                <div class="card mt-2">
+
+                    <div class="card-header">Product Information</div>
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="form-group mt-2 ">
+
+                                    <input type="text"
+                                           class="form-control"
+                            
+                                           placeholder="Enter product title">
+                                   
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-2">
+                                    <input type="number"
+                                           class="form-control"
+                                           
+                                           placeholder="Enter product price">
+                                     
+                                </div>
+                               
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea class="form-control" 
+                                         
+                                          placeholder="Product Description"></textarea> 
+                                <label >This field to describe product only 100 Characters is allowed 100 characters left</label>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                    
-                    <div class="col-sm bg-secondary">
-                    helo
-                </div>
-                    
-            </div>
 
-                    
-               
-            </div>
+
+
+
+                <div class="card mt-2">
+                    <div class="card-header"> General information</div>
+                    <div class="card-body">
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Payment Method:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control"
+
+                                        id="exampleFormControlSelect1">
+                                    <option>Cash</option>
+                                    <option>Transfer/cash</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-6 mt-1">
+                                <label >Availability </label>
+                            </div>
+                            <div class="col-md-6 mt-1">
+                                <select class="form-control mt-1" 
+                                        id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>   
+                               
+                            </div>
+                            
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="card mt-2">
+                    <div class="card-header"> Product Photo</div>
+                    <div class="card-body">
+
+
+                        <div class="row">
+
+                            <div class="col-xs-3">
+                             
+                            </div>
+                            <div class="custom-file col-md-9 ">
+                                <input type="file"
+                                       class="custom-file-input"
+                                     
+                                       id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="row mt-3">
+                    <div class="col-3 mx-auto">
+                        <div class="row">
+                            <div class="col-lg-6 mb-2">
+                                <button class="btn btn-success btn-block " type="submit">Submit</button>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
         </div>
+    </div>
+
+
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 
 
 
-
-
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-
-
-
-
-    </body>
+</body>
 </html>
