@@ -16,6 +16,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="css/custom.css" rel="stylesheet"/>
         <link href="css/waitMe.min.css" rel="stylesheet"/>
+        <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+        <link href="css/theme-default.css" rel="stylesheet"/>
+                <link href="css/sweetalert.css" rel="stylesheet"/>
+
+
     </head>
     <body>
 
@@ -60,7 +65,7 @@ and open the template in the editor.
 
 
 
-            <form id="productForm" enctype="multipart/form-data" action="api/updateCompany.php" method="post">
+            <form id="container" enctype="multipart/form-data" action="api/addProduct.php" method="post">
                 <div class="card mt-2">
 
                     <div class="card-header">Product Information</div>
@@ -74,7 +79,9 @@ and open the template in the editor.
                                     <input type="text"
                                            name="title"
                                            class="form-control"
-                                          
+
+                                           data-validation="required"
+
                                            placeholder="Enter product title">
 
                                 </div>
@@ -83,10 +90,12 @@ and open the template in the editor.
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group mt-2">
-                                    <input type="number"
+                                    <input type="text"
                                            class="form-control"
                                            name="price"
+                                           data-validation="required,number"
                                            placeholder="Enter product price">
+
 
                                 </div>
 
@@ -97,13 +106,14 @@ and open the template in the editor.
                             <div class="col-md-12">
                                 <textarea class="form-control"
                                           name="desc"
-                                          data-validation="length"
+                                          data-validation="required,length"
                                           data-validation-length="25-100"
-                                          
+                                          id="desc"
                                           placeholder="Product Description"></textarea> 
 
                             </div>
                         </div>
+
 
                         <div class="row">
                             <div class="col-12">
@@ -169,14 +179,18 @@ and open the template in the editor.
 
                         <div class="row">
 
-                            <div class="col-xs-3">
 
-                            </div>
-                            <div class="custom-file col-md-9 ">
+                            <div id="pics" class=" col-12">
                                 <input type="file"
-                                       class="custom-file-input"
-                                       id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                       multiple=""
+                                       data-validation-allowing="jpg, png" 
+                                       data-validation-max-size="200kb"
+                                       data-validation="required,size,mime,length"
+                                       data-validation-length="max5"
+                                       data-validation-error-msg-container="#pics"
+                                       name="productImages[]"
+
+                                       id="productPics">
 
                             </div>
 
@@ -192,7 +206,7 @@ and open the template in the editor.
                 <div class="row mt-3">
                     <div class="col-3 mx-auto">
                         <div class="row">
-                            <div class="col-lg-6 mb-2">
+                            <div class="col-lg-6 mb-2 mx-auto">
                                 <button class="btn btn-success btn-block " type="submit">Submit</button>
 
 
@@ -202,20 +216,90 @@ and open the template in the editor.
                     </div>
                 </div>
 
+            <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
 
 
             </form>
 
 
         </div>
-    </div>
 
 
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-   
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
 
-</body>
+        <script src="fileUpload/fileinput.min.js"></script>
+        <script src="js/waitMe.min.js"></script>
+        <script src="js/jquery.form.min.js"></script>
+
+        <script>
+
+            $.validate({modules: 'file'
+            });
+
+            function triggerLoading()
+            {
+                $('#container').waitMe({
+                    effect: 'bounce',
+                    text: 'Please wait',
+                    color: "#92977E",
+                    textPos: 'vertical',
+                    waitTime: -1
+
+                });
+            }
+            $('form').on('submit', function (e) {
+
+
+                e.preventDefault();
+                triggerLoading();
+                $(this).ajaxSubmit({
+
+                    success: function (data) {
+
+                        $('#container').waitMe("hide");
+                     
+                                                swal({
+                                                    title: "Success",
+                                                    text: "Product Added!",
+                                                    type: "success",
+
+                                                },
+                                                        function (isConfirm) {
+
+                                                            location.reload();
+                                                        });
+
+                    }
+                }
+
+                );
+
+            });
+
+            $(function () {
+
+
+
+                $("#productPics").fileinput({
+                    showUpload: false,
+                    dropZoneEnabled: false,
+                    maxFileCount: 5,
+                    msgPlaceholder: "Select up to 5 images for the product"
+
+                });
+                $('#desc').restrictLength($('#maxlength'));
+            });
+
+
+
+
+        </script>
+
+
+    </body>
 </html>

@@ -16,6 +16,9 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="css/custom.css" rel="stylesheet"/>
         <link href="css/waitMe.min.css" rel="stylesheet"/>
+        <link href="css/theme-default.css" rel="stylesheet"/>
+        <link href="css/sweetalert.css" rel="stylesheet"/>
+
 
 
     </head>
@@ -70,7 +73,11 @@ and open the template in the editor.
                         <div class="row ">
                             <div class="col-12">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                    <input
+                                        data-validation-allowing="jpg, png" 
+                                        data-validation-max-size="500kb"
+                                        data-validation="required,size,mime"
+                                        type="file" class="custom-file-input" id="inputGroupFile01">
                                     <label  class="custom-file-label" for="inputGroupFile01">Upload company logo</label>
                                 </div> 
                             </div>
@@ -371,8 +378,12 @@ and open the template in the editor.
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
         <script src="js/waitMe.min.js"></script>
         <script src="js/jquery.form.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
         <script type="text/javascript">
 
+
+                                    $.validate({modules: 'file'
+                                    });
                                     function getCurrentSubCats() {
                                         $.ajax({
                                             dataType: "json",
@@ -569,13 +580,13 @@ and open the template in the editor.
                                     $(function () {
 
                                         loadData();
+
                                         $('#about').restrictLength($('#maxlength'));
                                         $('#keyword').restrictLength($('#maxlength1'));
                                         $("#myForm :input").prop("disabled", true);
                                         $("#editbtn").prop("disabled", false);
                                         $('[data-toggle="popover"]').popover();
-                                        $.validate({modules: 'file'
-                                        });
+
                                         $('#subcat').multiselect(
                                                 {
                                                     search: {
@@ -629,7 +640,21 @@ and open the template in the editor.
                                             success: function (data) {
                                                 $(container).waitMe("hide");
 
-                                                location.reload();
+
+
+
+
+                                                swal({
+                                                    title: "Success",
+                                                    text: "Profile Updated!",
+                                                    type: "success",
+
+                                                },
+                                                        function (isConfirm) {
+
+                                                            location.reload();
+                                                        });
+
 
                                             }
                                         }

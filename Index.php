@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="css/custom.css" rel="stylesheet"/>
         <link href="css/waitMe.min.css" rel="stylesheet"/>
+        <link href="css/sweetalert.css" rel="stylesheet"/>
         <title></title>
     </head>
     <body>
@@ -52,6 +53,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.form.min.js"></script>
         <script src="js/waitMe.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
 
 
 
@@ -79,7 +81,8 @@
 
                         $(container).waitMe("hide"); 
                                 if (data.length == 0)
-                            alert("wrong username or password");
+                       swal("Opps!", "Invalid username or password", "error");
+
                         else
                             window.location.href = "Profile.php";
 
