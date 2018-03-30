@@ -71,7 +71,7 @@ and open the template in the editor.
                             <div class="col-12">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                    <label  class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    <label  class="custom-file-label" for="inputGroupFile01">Upload company logo</label>
                                 </div> 
                             </div>
                         </div>
