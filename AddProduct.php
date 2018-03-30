@@ -27,7 +27,7 @@ and open the template in the editor.
         <div class="container col-12">
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-                <a class="navbar-brand"><img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Square_200x200.svg" width="50" height="50"/></a>
+                <a class="navbar-brand"><img class="img-fluid" src="<?php echo $_SESSION['logo']?>" width="50" height="50"/></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#firstNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>

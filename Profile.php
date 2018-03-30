@@ -24,47 +24,48 @@ and open the template in the editor.
     </head>
     <body>
 
-        <form id="myForm" enctype="multipart/form-data" action="api/updateCompany.php" method="post">
-            <div class="container col-12" id="container">
-                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container col-12">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-                    <a class="navbar-brand"><img class="img-fluid" id="profileImage" src="" width="50" height="50"/></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#firstNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-
-                    <div id="firstNav" class="collapse navbar-collapse">
-
-                        <ul class="navbar-nav  mr-auto">
-                            <li  class="nav-item">
-                                <a class="nav-link active ">Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="AddProduct.php">Add Product</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="RequestPage.php">Requests Page</a>
-                            </li>
-
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li  class="nav-item ">
-                                <a class="nav-link" href="api/logout.php">Logout</a>
-                            </li>
-                        </ul>
-
-                    </div>
-
-                </nav>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
-                    </ol>
-                </nav>
+                <a class="navbar-brand"><img class="img-fluid" id="profileImage" src="" width="50" height="50"/></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#firstNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
 
+                <div id="firstNav" class="collapse navbar-collapse">
 
+                    <ul class="navbar-nav  mr-auto">
+                        <li  class="nav-item">
+                            <a class="nav-link active ">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="AddProduct.php">Add Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="RequestPage.php">Requests Page</a>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        
+                        <li  class="nav-item ">
+                            <a class="nav-link" href="api/logout.php">Logout</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </nav>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                </ol>
+            </nav>
+
+
+
+            <form id="myForm" enctype="multipart/form-data" action="api/updateCompany.php" method="post">
 
 
 
@@ -74,6 +75,7 @@ and open the template in the editor.
                             <div class="col-12">
                                 <div class="custom-file">
                                     <input
+                                        data-validation-optional="true"
                                         data-validation-allowing="jpg, png" 
                                         data-validation-max-size="500kb"
                                         data-validation="required,size,mime"
@@ -363,18 +365,17 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
+            </form>
+        </div>
+        <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
 
-            </div>
-            <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
 
-        </form>
 
 
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/multiselect.min.js"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
         <script src="js/waitMe.min.js"></script>
         <script src="js/jquery.form.min.js"></script>
@@ -427,6 +428,8 @@ and open the template in the editor.
                                                                     .attr("value", value.id)
                                                                     .text(value.Name));
                                                 });
+
+                                                $('#myForm').waitMe("hide");
 
 
 
@@ -513,7 +516,7 @@ and open the template in the editor.
 
                                     function triggerLoading()
                                     {
-                                        $('#container').waitMe({
+                                        $('#myForm').waitMe({
                                             effect: 'bounce',
                                             text: 'Please wait',
                                             color: "#92977E",
@@ -563,7 +566,6 @@ and open the template in the editor.
                                                 getSubSubCats();
                                                 getCurrentSubSubCats();
                                                 getCurrentSubCats();
-                                                $(container).waitMe("hide");
 
 
 
@@ -638,10 +640,10 @@ and open the template in the editor.
                                         $(this).ajaxSubmit({
 
                                             success: function (data) {
-                                                $(container).waitMe("hide");
 
 
 
+                                                $('#myForm').waitMe("hide");
 
 
                                                 swal({

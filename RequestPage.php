@@ -1,7 +1,8 @@
-<?php session_start();
+<?php
+session_start();
 
-        if (!isset($_SESSION['login_user']))
-            header("Location: Index.php");
+if (!isset($_SESSION['login_user']))
+    header("Location: Index.php");
 ?>
 <!DOCTYPE html>
 <!--
@@ -14,7 +15,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="css/custom.css" rel="stylesheet"/>
-        <link href="css/jquery.bootgrid.min.css" rel="stylesheet"/>
+        <link href="css/datatables.min.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -27,7 +28,7 @@ and open the template in the editor.
 
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-                <a class="navbar-brand"><img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Square_200x200.svg" width="50" height="50"/></a>
+                <a class="navbar-brand"><img class="img-fluid" src="<?php echo $_SESSION['logo'] ?>" width="50" height="50"/></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#firstNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -89,18 +90,30 @@ and open the template in the editor.
 
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 table-responsive">
 
-                            <table id="grid-basic" class="table table-condensed table-hover
-                                   table-striped">
+
+
+
+                            <table id="products" class="table table-striped table-bordered"  style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th data-column-id="id">ID</th>
-                                        <th data-column-id="Title">Sender</th>
-                                        
+                                        <th >ID</th>
+                                        <th >Title</th>
+                                        <th >Price</th>
+
+                                        <th >Thumbnail</th>
+                                    
+                                        <th>Delete/Edit</th>
+
                                     </tr>
                                 </thead>
                             </table>
+
+
+
+
+
 
 
 
@@ -118,39 +131,100 @@ and open the template in the editor.
 
 
 
-
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+   
+      <div class="modal-body">
+        
+          <div class="card">
+              <div class="card-header">
+                  Edit Product
+              </div>
+              
+              <div class="card-body">
+                  Hello
+              </div>
+          </div>
+          
+          
+          
+          
+          
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.bootgrid.min.js"></script>
+        <script src="js/datatables.min.js"></script>
+
 
 
 
 
         <script>
-            $("#grid-basic").bootgrid(
-                    {
-                        post: function ()
-    {
-        /* To accumulate custom parameter with the request object */
-        return {
-            id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
-        };
-    },
-                rowCount : [3,6,-1],
-                ajax: true,
-    
-    url: "api/getPendingProducts.php"
+
+function openModal(title,price,id,desc)
+{
+   $('#productModal').modal('show');
+}
+
+
+
+
+
+
+
+
+
+           $(document).ready(function() {
+               
+    $('#products').DataTable( {
+        "ajax": "api/getPendingProducts.php",
+        "columns": [
+            { "data": "id" },
+            { "data": "Title" },
+            { "data": "Price" },
+            { "data": "Thumbnail" },
+            { "data": "Description" }
+        ],
+        "columnDefs": [ {
+    "targets": 4,
+    "data": "Price",
+    "render": function ( data, type, row, meta ) {
+        var desc = row["Description"];
+        desc = desc.replace(/(['"])/g, "\\$1");
+        var title = row["Title"];
+        title = title.replace(/(['"])/g, "\\$1");
+      return "<div class='row  mt-3'> <div class='col-6 text-center'>  <a href='#'><i class='fas fa-lg fa-edit' onclick=\"openModal('"+title+"',"+row["Price"]+","+row["id"]+",'"+desc+"')\"></i></a>"+
+                  "</div><div class='col-6 text-center'><a href='#'><i class='fas fa-lg fa-trash-alt' onclick=\"openModal('"+title+"',"+row["Price"]+","+row["id"]+",'"+desc+"')\"></i></a></div></div>";
+ 
+    }
+  } ,
+  {
+    "targets": 3,
+    "data": "Thumbnail",
+    "render": function ( data, type, row, meta ) {
+       
+      return "<img src='"+data+"' width='75' height='75' />";
+
+    }
+  }
   
-    
-                        
-                       
-                        
-                    });
             
+            ]
+    } );
+} );
         </script>
     </body>
 </html>

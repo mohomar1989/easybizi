@@ -3,7 +3,7 @@
 include'dbConnect.php';
 
 $businessId = 60;//$_POST['businessId'];
-$query = "SELECT id,Title,Price,Thumbnail from PRODUCT ";
+$query = "SELECT id,Title,Price,Thumbnail,Description from PRODUCT ";
 
 $result = mysqli_query($link, $query);
 
@@ -13,7 +13,7 @@ while($row = mysqli_fetch_assoc($result))
         $rows [] = $row;
 
 $final = new \stdClass();
-$final->rows = $rows;
+$final->data = $rows;
 echo json_encode($final,JSON_UNESCAPED_SLASHES);
 
 
