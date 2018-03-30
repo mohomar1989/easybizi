@@ -240,6 +240,7 @@ and open the template in the editor.
 
             $.validate({modules: 'file'
             });
+                 $('#desc').restrictLength($('#maxlength'));
 
             function triggerLoading()
             {
@@ -292,7 +293,7 @@ and open the template in the editor.
                     msgPlaceholder: "Select up to 5 images for the product"
 
                 });
-                $('#desc').restrictLength($('#maxlength'));
+           
             });
 
 
