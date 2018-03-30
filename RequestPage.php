@@ -8,8 +8,8 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="css/bootstrap.min.css" rel="stylesheet"/>
         <link href="css/custom.css" rel="stylesheet"/>
+        <link href="css/jquery.bootgrid.min.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -38,7 +38,7 @@ and open the template in the editor.
                             <a class="nav-link" href="AddProduct.php">Add Product</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="RequestPage.php">Requests Page</a>
+                            <a class="nav-link active" href="RequestPage.php">Requests Page</a>
                         </li>
 
                     </ul>
@@ -57,7 +57,7 @@ and open the template in the editor.
                 </ol>
             </nav>
 
-         
+
 
             <div class="card mt-2">
 
@@ -85,46 +85,20 @@ and open the template in the editor.
 
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr class="table-primary">
-                                        <th scope="col">#</th>
-                                        <th scope="col">Product Title</th>
 
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Remove product</th>
+                            <table id="grid-basic" class="table table-condensed table-hover
+                                   table-striped">
+                                <thead>
+                                    <tr>
+                                        <th data-column-id="id">ID</th>
+                                        <th data-column-id="Title">Sender</th>
+                                        
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-
-                                        <td>@mdo</td>
-                                        <td>
-                                            <button>delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-
-                                        <td>@fat</td>
-                                        <td>
-                                            <button>delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry the Bird</td>
-
-                                        <td>wew</td>
-                                        <td>
-                                            <button>delete</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
+
+
+
                         </div>
 
                     </div>
@@ -134,25 +108,7 @@ and open the template in the editor.
             </div>
 
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination mt-2">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+
         </div>
 
 
@@ -164,9 +120,32 @@ and open the template in the editor.
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.bootgrid.min.js"></script>
 
 
 
 
+        <script>
+            $("#grid-basic").bootgrid(
+                    {
+                        post: function ()
+    {
+        /* To accumulate custom parameter with the request object */
+        return {
+            id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+        };
+    },
+                rowCount : [3,6,-1],
+                ajax: true,
+    
+    url: "api/getPendingProducts.php"
+  
+    
+                        
+                       
+                        
+                    });
+            
+        </script>
     </body>
 </html>
