@@ -21,7 +21,7 @@ and open the template in the editor.
     </head>
     <body>
 
-        <form method="POST" id="myForm">
+        <form id="myForm" enctype="multipart/form-data" action="api/updateCompany.php" method="post">
             <div class="container col-12" id="container">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
@@ -176,7 +176,7 @@ and open the template in the editor.
                                        data-content="Whatsapp# e.g 9715********"
                                        id="companyWhatsapp"
                                        placeholder="Whatsapp Number">
-                                
+
                             </div>
                             <div class="col-lg-6 mb-2">
                                 <input type="url"
@@ -296,20 +296,8 @@ and open the template in the editor.
                             <div class="col-lg-5">
 
                                 <label for="subcat">Select a Sub-Category</label>
-                                <select  id="subcat" class="form-control" size="8" multiple="multiple">
-                                    <option value="1">C++</option>
-                                    <option value="2">C#</option>
-                                    <option value="3">Haskell</option>
-                                    <option value="4">Java</option>
-                                    <option value="5">JavaScript</option>
-                                    <option value="6">Lisp</option>
-                                    <option value="7">Lua</option>
-                                    <option value="8">MATLAB</option>
-                                    <option value="9">NewLISP</option>
-                                    <option value="10">PHP</option>
-                                    <option value="11">Perl</option>
-                                    <option value="12">SQL</option>
-                                    <option value="13">Unix shell</option>
+                                <select data-right="#subcat_to"  id="subcat" class="form-control" size="8" multiple="multiple">
+
                                 </select>
                             </div>
                             <div class="col-lg-2 my-auto">
@@ -324,7 +312,7 @@ and open the template in the editor.
 
 
                                     name="sub[]"
-                                    id="subcat_to" class="form-control" size="8" multiple="multiple">
+                                    id="subcat_to" class="multiselect form-control" size="8" multiple="multiple">
                                 </select>
                             </div>
                         </div>
@@ -337,19 +325,7 @@ and open the template in the editor.
                             <div class="col-lg-5">
                                 <label for="subsubcat">Select a Sub-Sub-Category</label>
                                 <select  id="subsubcat" class="form-control" size="8" multiple="multiple">
-                                    <option value="1">C++</option>
-                                    <option value="2">C#</option>
-                                    <option value="3">Haskell</option>
-                                    <option value="4">Java</option>
-                                    <option value="5">JavaScript</option>
-                                    <option value="6">Lisp</option>
-                                    <option value="7">Lua</option>
-                                    <option value="8">MATLAB</option>
-                                    <option value="9">NewLISP</option>
-                                    <option value="10">PHP</option>
-                                    <option value="11">Perl</option>
-                                    <option value="12">SQL</option>
-                                    <option value="13">Unix shell</option>
+
                                 </select>
                             </div>
                             <div class="col-lg-2 my-auto">
@@ -360,7 +336,7 @@ and open the template in the editor.
                             </div>
                             <div class="col-lg-5">
                                 <label for="subsubcat_to">Selected Sub-Sub-Categories</label>
-                                <select name="subsub" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
+                                <select name="subsub[]" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
                                 </select>
                             </div>
                         </div>
@@ -382,6 +358,7 @@ and open the template in the editor.
                 </div>
 
             </div>
+            <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
 
         </form>
 
@@ -396,6 +373,132 @@ and open the template in the editor.
         <script src="js/jquery.form.min.js"></script>
         <script type="text/javascript">
 
+                                    function getCurrentSubCats() {
+                                        $.ajax({
+                                            dataType: "json",
+
+                                            type: "POST",
+                                            cache: false,
+                                            data: {"id":<?php echo $_SESSION['login_user']; ?>},
+                                            url: "api/getBusinessSub.php",
+
+                                            success: function (data) {
+
+                                                $.each(data, function (key, value) {
+                                                    $('#subcat_to')
+                                                            .append($("<option></option>")
+                                                                    .attr("value", value.id)
+                                                                    .text(value.Name));
+                                                });
+
+
+
+                                            }
+
+                                        });
+
+                                    }
+
+                                    function getCurrentSubSubCats() {
+                                        $.ajax({
+                                            dataType: "json",
+
+                                            type: "POST",
+                                            cache: false,
+                                            data: {"id":<?php echo $_SESSION['login_user']; ?>},
+                                            url: "api/getBusinessSubSub.php",
+
+                                            success: function (data) {
+
+                                                $.each(data, function (key, value) {
+                                                    $('#subsubcat_to')
+                                                            .append($("<option></option>")
+                                                                    .attr("value", value.id)
+                                                                    .text(value.Name));
+                                                });
+
+
+
+                                            }
+
+                                        });
+
+                                    }
+
+                                    function getSubSubCats() {
+                                        $.ajax({
+                                            dataType: "json",
+
+                                            type: "POST",
+                                            cache: false,
+
+                                            url: "api/getSubSubCat.php",
+
+                                            success: function (data) {
+
+                                                $.each(data, function (key, value) {
+                                                    $('#subsubcat')
+                                                            .append($("<option></option>")
+                                                                    .attr("value", value.id)
+                                                                    .text(value.Name));
+                                                });
+
+
+
+                                            }
+
+                                        });
+
+                                    }
+
+                                    function getSubCats() {
+                                        $.ajax({
+                                            dataType: "json",
+
+                                            type: "POST",
+                                            cache: false,
+
+                                            url: "api/getSubCat.php",
+
+                                            success: function (data) {
+
+                                                $.each(data, function (key, value) {
+                                                    $('#subcat')
+                                                            .append($("<option></option>")
+                                                                    .attr("value", value.id)
+                                                                    .text(value.Name));
+                                                });
+
+
+
+                                            }
+
+                                        });
+
+                                    }
+
+                                    function getKeywords()
+                                    {
+                                        //getKeywords
+
+                                        $.ajax({
+                                            dataType: "text",
+
+                                            type: "POST",
+                                            cache: false,
+                                            data: {"id":<?php echo $_SESSION['login_user']; ?>},
+                                            url: "api/getKeywords.php",
+
+                                            success: function (data) {
+
+
+                                                $("#keyword").prop("value", data);
+
+
+                                            }
+
+                                        });
+                                    }
 
                                     function triggerLoading()
                                     {
@@ -403,7 +506,9 @@ and open the template in the editor.
                                             effect: 'bounce',
                                             text: 'Please wait',
                                             color: "#92977E",
-                                            textPos: 'vertical'
+                                            textPos: 'vertical',
+                                            waitTime: -1
+
                                         });
                                     }
                                     function enableForm()
@@ -424,11 +529,10 @@ and open the template in the editor.
                                             data: {"id":<?php echo $_SESSION['login_user']; ?>},
 
                                             success: function (data) {
-                                                $(container).waitMe("hide");
+
 
                                                 $("#companyLogo").prop("src", data['Logo']);
                                                 $("#profileImage").prop("src", data['Logo']);
-                                                $("#profileImage1").prop("src", data['Logo']);
                                                 $("#companyWhatsapp").prop("value", data['Whatsapp']);
                                                 $("#companyName").prop("value", data['CompanyName']);
                                                 $("#companyEmail").prop("value", data['ContactEmail']);
@@ -437,12 +541,18 @@ and open the template in the editor.
                                                 $("#companyLocation").prop("value", data['Location']);
                                                 $("#companyWebsite").prop("value", data['Website']);
                                                 $("#about").prop("value", data['About']);
-
                                                 $("#businessLabel").prop("innerHTML", data['CompanyName']);
                                                 //businessNameLabel
                                                 $("#businessNameLabel").prop("innerHTML", "Welcome to EasyBizi " + data['CompanyName']);
                                                 //citySelect
                                                 $("#citySelect").prop("value", data['CompanyCity']);
+
+                                                getSubCats();
+                                                getKeywords();
+                                                getSubSubCats();
+                                                getCurrentSubSubCats();
+                                                getCurrentSubCats();
+                                                $(container).waitMe("hide");
 
 
 
@@ -469,8 +579,8 @@ and open the template in the editor.
                                         $('#subcat').multiselect(
                                                 {
                                                     search: {
-                                                        left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                                                        right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                                                        left: '<input type="text" class="form-control mb-1" placeholder="Search..." />',
+                                                        right: '<input type="text"  class="form-control mb-1" placeholder="Search..." />',
                                                     },
                                                     fireSearch: function (value) {
                                                         return value.length > 2;
@@ -480,8 +590,8 @@ and open the template in the editor.
                                         $('#subsubcat').multiselect(
                                                 {
                                                     search: {
-                                                        left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                                                        right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                                                        left: '<input type="text"  class="form-control mb-1" placeholder="Search..." />',
+                                                        right: '<input type="text"  class="form-control mb-1" placeholder="Search..." />',
                                                     },
                                                     fireSearch: function (value) {
                                                         return value.length > 2;
@@ -504,6 +614,29 @@ and open the template in the editor.
                                     });
 
 
+                                    $('form').on('submit', function (e) {
+
+
+                                        e.preventDefault(); // prevent native submit
+
+                                        $('#subcat_to option').prop('selected', true);
+                                        $('#subsubcat_to option').prop('selected', true);
+                                        triggerLoading();
+
+
+                                        $(this).ajaxSubmit({
+
+                                            success: function (data) {
+                                                $(container).waitMe("hide");
+
+                                                location.reload();
+
+                                            }
+                                        }
+
+                                        );
+
+                                    });
 
 
         </script>

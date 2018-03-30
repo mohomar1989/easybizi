@@ -3,9 +3,7 @@
 include'dbConnect.php';
 
 $businessId = $_POST['businessId'];
-$companyName=$_POST['companyName'];
 $companyNumber=$_POST['companyNumber'];
-$companyEmail=$_POST['companyEmail'];
 $companyAbout=$_POST['companyAbout'];
 $companyWhatsapp=$_POST['companyWhatsapp'];
 $companyLocation=$_POST['companyLocation'];
@@ -16,7 +14,6 @@ $companyWebsite=$_POST['companyWebsite'];
 $companyCity=$_POST['companyCity'];
 $subcats = $_POST['sub'];
 $subsubcats = $_POST['subsub'];
-$companyName = mysqli_real_escape_string($link,$companyName);
 $companyAbout = mysqli_real_escape_string($link,$companyAbout);
 
 
@@ -29,8 +26,8 @@ move_uploaded_file($tempNAme, "../uploads/".$fileName);
 $logo_url = "http://business.easybizi.ae/uploads/".$fileName;
 
 $query = "UPDATE `BUSINESS` SET "
-        . "CompanyName='$companyName',"
-        . "ContactEmail='$companyEmail',"
+    
+       
         . "ContactNumber='$companyNumber',"
         . "Whatsapp='$companyWhatsapp',"
         . "Instagram='$companyInstagram',"
@@ -46,8 +43,6 @@ else
     
 {
     $query = "UPDATE `BUSINESS` SET "
-        . "CompanyName='$companyName',"
-        . "ContactEmail='$companyEmail',"
         . "ContactNumber='$companyNumber',"
         . "Whatsapp='$companyWhatsapp',"
         . "Instagram='$companyInstagram',"
@@ -60,7 +55,6 @@ else
 }
 
 
-echo $query;
 
 mysqli_query($link, $query);
 
@@ -69,7 +63,6 @@ foreach($subcats as $subId)
 {
     
 $query = "INSERT INTO BUSINESS_SUBCATEGORY (Id,BusinessId,SubCategoryId) VALUES (NULL,$businessId,$subId)";
-echo $query."\n";
 mysqli_query($link, $query);
 }
 
@@ -78,7 +71,6 @@ foreach($subsubcats as $subsubId)
 {
     
 $query = "INSERT INTO BUSINESS_SUBSUBCATEGORY (Id,BusinessId,SubSubCategoryId) VALUES (NULL,$businessId,$subsubId)";
-echo $query."\n";
 mysqli_query($link, $query);
 }
 
