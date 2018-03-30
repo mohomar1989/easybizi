@@ -1,3 +1,8 @@
+<?php session_start();
+
+        if (!isset($_SESSION['login_user']))
+            header("Location: Index.php");
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -38,7 +43,7 @@ and open the template in the editor.
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li  class="nav-item ">
-                            <a class="nav-link" href="#">Logout</a>
+                            <a class="nav-link" href="api/logout.php">Logout</a>
                         </li>
                     </ul>
 

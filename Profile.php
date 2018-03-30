@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['login_user']))
+    header("Location: Index.php");
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -9,15 +15,17 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="css/custom.css" rel="stylesheet"/>
+        <link href="css/waitMe.min.css" rel="stylesheet"/>
+
 
     </head>
     <body>
 
         <form method="POST" id="myForm">
-            <div class="container col-12">
+            <div class="container col-12" id="container">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-                    <a class="navbar-brand"><img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Square_200x200.svg" width="50" height="50"/></a>
+                    <a class="navbar-brand"><img class="img-fluid" id="profileImage" src="" width="50" height="50"/></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#firstNav">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -39,7 +47,7 @@ and open the template in the editor.
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <li  class="nav-item ">
-                                <a class="nav-link" href="#">Logout</a>
+                                <a class="nav-link" href="api/logout.php">Logout</a>
                             </li>
                         </ul>
 
@@ -83,6 +91,7 @@ and open the template in the editor.
                                     <div class="form-group col-12">
                                         <input type="text"
                                                readonly="true"
+                                               id="companyName"
                                                class="form-control text-center"
                                                placeholder="Business Name">
                                     </div>
@@ -91,6 +100,7 @@ and open the template in the editor.
                                     <div class="form-group col-12">
                                         <input type="tel"
                                                class="form-control text-center"
+                                               id="companyNumber"
                                                name="companyNumber"
                                                data-validation="custom"
                                                data-validation-regexp="^00971\d{9}$"
@@ -108,6 +118,7 @@ and open the template in the editor.
                                         <input type="text"
                                                class="form-control text-center"
                                                readonly="true"
+                                               id="companyEmail"
                                                placeholder="Business Email">
                                     </div>
                                 </div>
@@ -163,11 +174,14 @@ and open the template in the editor.
                                        data-trigger="focus"
                                        data-placement="top"
                                        data-content="Whatsapp# e.g 9715********"
+                                       id="companyWhatsapp"
                                        placeholder="Whatsapp Number">
+                                
                             </div>
                             <div class="col-lg-6 mb-2">
                                 <input type="url"
                                        name="companyWebsite"
+                                       id="companyWebsite"
                                        class="form-control text-center"
                                        data-validation="url"
                                        data-validation-optional="true"
@@ -182,6 +196,7 @@ and open the template in the editor.
                             <div class="col-lg-6 mb-2">
                                 <input type="url"
                                        name="companyInstagram"
+                                       id="companyInstagram"
                                        class="form-control text-center"
                                        data-validation="url"
                                        data-validation-optional="true"
@@ -233,6 +248,7 @@ and open the template in the editor.
                         <div class="row mt-4 mb-2">
                             <div class="col-12  mx-auto">
                                 <input type="text"
+                                       id="companyLocation"
                                        name="companyLocation"
                                        data-validation="url"
                                        data-validation-optional="true"
@@ -251,7 +267,7 @@ and open the template in the editor.
                                 </select>
                             </div>
                             <div  class="col-lg-6">
-                                <select name="companyCity" class="form-control">
+                                <select name="companyCity" id="citySelect" class="form-control">
                                     <option>Abu Dhabi</option>
                                     <option>Abu Dhabi-AlAin</option>
                                     <option>Abu Dhabi-Western Region</option>
@@ -305,8 +321,8 @@ and open the template in the editor.
                             <div class="col-lg-5">
                                 <label for="subcat_to">Selected Sub-Categories</label>
                                 <select 
-                                    
-                                  
+
+
                                     name="sub[]"
                                     id="subcat_to" class="form-control" size="8" multiple="multiple">
                                 </select>
@@ -376,69 +392,118 @@ and open the template in the editor.
         <script src="js/multiselect.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-
-
+        <script src="js/waitMe.min.js"></script>
+        <script src="js/jquery.form.min.js"></script>
         <script type="text/javascript">
 
 
-            function enableForm()
-            {
-                $("#myForm :input").prop("disabled", false);
-            }
-            $('#about').restrictLength($('#maxlength'));
-            $('#keyword').restrictLength($('#maxlength1'));
+                                    function triggerLoading()
+                                    {
+                                        $('#container').waitMe({
+                                            effect: 'bounce',
+                                            text: 'Please wait',
+                                            color: "#92977E",
+                                            textPos: 'vertical'
+                                        });
+                                    }
+                                    function enableForm()
+                                    {
+                                        $("#myForm :input").prop("disabled", false);
+                                        $("#editbtn").prop("disabled", true);
+                                    }
+                                    function loadData()
+                                    {
+                                        triggerLoading();
+                                        $.ajax({
+                                            dataType: "json",
+
+                                            type: "POST",
+                                            cache: false,
+
+                                            url: "api/getBusinessDetails.php",
+                                            data: {"id":<?php echo $_SESSION['login_user']; ?>},
+
+                                            success: function (data) {
+                                                $(container).waitMe("hide");
+
+                                                $("#companyLogo").prop("src", data['Logo']);
+                                                $("#profileImage").prop("src", data['Logo']);
+                                                $("#profileImage1").prop("src", data['Logo']);
+                                                $("#companyWhatsapp").prop("value", data['Whatsapp']);
+                                                $("#companyName").prop("value", data['CompanyName']);
+                                                $("#companyEmail").prop("value", data['ContactEmail']);
+                                                $("#companyNumber").prop("value", data['ContactNumber']);
+                                                $("#companyInstagram").prop("value", data['Instagram']);
+                                                $("#companyLocation").prop("value", data['Location']);
+                                                $("#companyWebsite").prop("value", data['Website']);
+                                                $("#about").prop("value", data['About']);
+
+                                                $("#businessLabel").prop("innerHTML", data['CompanyName']);
+                                                //businessNameLabel
+                                                $("#businessNameLabel").prop("innerHTML", "Welcome to EasyBizi " + data['CompanyName']);
+                                                //citySelect
+                                                $("#citySelect").prop("value", data['CompanyCity']);
 
 
-            $(function () {
-                $("#myForm :input").prop("disabled", true);
-                $("#editbtn").prop("disabled",false);
-                
-                $('[data-toggle="popover"]').popover();
-                $.validate({modules: 'file'
 
 
 
+                                            }
 
-                });
-                $('#subcat').multiselect(
-                        {
-                            
- 
-                            
-                            search: {
-                                left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                                right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                            },
-                            fireSearch: function (value) {
-                                return value.length > 2;
-                            }
-                        }
-                );
-                $('#subsubcat').multiselect(
-                        {
-                            search: {
-                                left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                                right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
-                            },
-                            fireSearch: function (value) {
-                                return value.length > 2;
-                            }
-                        }
+                                        });
 
-                );
-            });
+                                    }
 
-            document.getElementById("inputGroupFile01").onchange = function () {
-                var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    // get loaded data and render thumbnail.
-                    document.getElementById("companyLogo").src = e.target.result;
-                };
 
-                // read the image file as a data URL.
-                reader.readAsDataURL(this.files[0]);
-            };
+                                    $(function () {
+
+                                        loadData();
+                                        $('#about').restrictLength($('#maxlength'));
+                                        $('#keyword').restrictLength($('#maxlength1'));
+                                        $("#myForm :input").prop("disabled", true);
+                                        $("#editbtn").prop("disabled", false);
+                                        $('[data-toggle="popover"]').popover();
+                                        $.validate({modules: 'file'
+                                        });
+                                        $('#subcat').multiselect(
+                                                {
+                                                    search: {
+                                                        left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                                                        right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                                                    },
+                                                    fireSearch: function (value) {
+                                                        return value.length > 2;
+                                                    }
+                                                }
+                                        );
+                                        $('#subsubcat').multiselect(
+                                                {
+                                                    search: {
+                                                        left: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                                                        right: '<input type="text" name="q" class="form-control mb-1" placeholder="Search..." />',
+                                                    },
+                                                    fireSearch: function (value) {
+                                                        return value.length > 2;
+                                                    }
+                                                }
+
+                                        );
+
+                                        document.getElementById("inputGroupFile01").onchange = function () {
+                                            var reader = new FileReader();
+
+                                            reader.onload = function (e) {
+                                                // get loaded data and render thumbnail.
+                                                document.getElementById("companyLogo").src = e.target.result;
+                                            };
+
+                                            // read the image file as a data URL.
+                                            reader.readAsDataURL(this.files[0]);
+                                        };
+                                    });
+
+
 
 
         </script>
