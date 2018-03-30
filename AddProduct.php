@@ -1,7 +1,8 @@
-<?php session_start();
+<?php
+session_start();
 
-        if (!isset($_SESSION['login_user']))
-            header("Location: Index.php");
+if (!isset($_SESSION['login_user']))
+    header("Location: Index.php");
 ?>
 <!DOCTYPE html>
 <!--
@@ -14,7 +15,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="css/custom.css" rel="stylesheet"/>
-
+        <link href="css/waitMe.min.css" rel="stylesheet"/>
     </head>
     <body>
 
@@ -59,7 +60,7 @@ and open the template in the editor.
 
 
 
-            <form>
+            <form id="productForm" enctype="multipart/form-data" action="api/updateCompany.php" method="post">
                 <div class="card mt-2">
 
                     <div class="card-header">Product Information</div>
@@ -71,10 +72,11 @@ and open the template in the editor.
                                 <div class="form-group mt-2 ">
 
                                     <input type="text"
+                                           name="title"
                                            class="form-control"
-                            
+                                          
                                            placeholder="Enter product title">
-                                   
+
                                 </div>
 
 
@@ -83,21 +85,31 @@ and open the template in the editor.
                                 <div class="form-group mt-2">
                                     <input type="number"
                                            class="form-control"
-                                           
+                                           name="price"
                                            placeholder="Enter product price">
-                                     
+
                                 </div>
-                               
+
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12">
-                                <textarea class="form-control" 
-                                         
+                                <textarea class="form-control"
+                                          name="desc"
+                                          data-validation="length"
+                                          data-validation-length="25-100"
+                                          
                                           placeholder="Product Description"></textarea> 
-                                <label >This field to describe product only 100 Characters is allowed 100 characters left</label>
-                                
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="small"><span id="maxlength">100</span> characters left</p>
+
+
                             </div>
                         </div>
                     </div>
@@ -117,15 +129,14 @@ and open the template in the editor.
                             </div>
                             <div class="col-md-6">
                                 <select class="form-control"
-
-                                        id="exampleFormControlSelect1">
-                                    <option>Cash</option>
+                                        name="paymentMethod"
+                                        id="paymentSelect">
+                                    <option>Cash on delivery</option>
                                     <option>Transfer/cash</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option>Bank Transfer</option>
+
                                 </select>
-                                
+
                             </div>
                         </div>
                         <hr/>
@@ -135,16 +146,15 @@ and open the template in the editor.
                             </div>
                             <div class="col-md-6 mt-1">
                                 <select class="form-control mt-1" 
-                                        id="exampleFormControlSelect1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                        name="availability"
+                                        id="avaSelect">
+                                    <option>Available</option>
+                                    <option>Not Avaliable</option>
+
                                 </select>   
-                               
+
                             </div>
-                            
+
                         </div>
 
 
@@ -160,15 +170,14 @@ and open the template in the editor.
                         <div class="row">
 
                             <div class="col-xs-3">
-                             
+
                             </div>
                             <div class="custom-file col-md-9 ">
                                 <input type="file"
                                        class="custom-file-input"
-                                     
                                        id="customFile">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
-                                
+
                             </div>
 
                         </div>
@@ -206,9 +215,7 @@ and open the template in the editor.
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
-
-
+   
 
 </body>
 </html>
