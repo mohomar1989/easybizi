@@ -76,7 +76,7 @@ mysqli_query($link, $query);
 
 
 
-
+// get the submitted keywords
 $var = explode(",",$companyKeyword);
 $query = "SELECT * FROM KEYWORD";
 $result = mysqli_query($link, $query);
@@ -85,9 +85,10 @@ while ($row = mysqli_fetch_assoc($result))
 {
     $keywords [] = $row;
 }
-
+//check the submitted keywrods if its in the table
 foreach($var as $keyword)
 {
+    //if its there, dont add, if not, add it to keyword table
     if(containskeyword($keyword,$keywords))
     continue;
     else
@@ -103,6 +104,7 @@ foreach($var as $value)
 {
     $toAdd=$toAdd."'$value',";
 }
+
 $toAdd = rtrim($toAdd,",");
 $query = "SELECT * FROM KEYWORD where Keyword in ($toAdd)";
 $result = mysqli_query($link, $query);
@@ -118,7 +120,8 @@ mysqli_query($link, $q1);
 
 foreach($keywords as $k)
 {
-    $q = "INSERT INTO BUSINESS_KEYWORD(Id,BusinessId,KeywordId) VALUES (NULL,$businessId,$k[id])";
+    $kid = $k["id"];
+    $q = "INSERT INTO BUSINESS_KEYWORD(Id,BusinessId,KeywordId) VALUES (NULL,$businessId,$kid)";
     mysqli_query($link, $q);
    
 }

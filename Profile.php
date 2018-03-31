@@ -365,9 +365,9 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
+                        <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
             </form>
         </div>
-        <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
 
 
 
