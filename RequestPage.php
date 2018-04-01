@@ -122,16 +122,16 @@ and open the template in the editor.
                                     <div class="form-group">
                                         <label for="modalProductPrice" class=" col-form-label">Product Price</label>
                                         <input type="text"
-                                               
+
                                                data-validation="required,number"
                                                name="productPrice" class="form-control" id="modalProductPrice">
                                     </div>
                                     <div class="form-group">
                                         <label for="modalProductDesc" class=" col-form-label">Product Description</label>
                                         <textarea type="text" 
-                                                  
-                                          data-validation="required,length"
-                                          data-validation-length="25-100"
+
+                                                  data-validation="required,length"
+                                                  data-validation-length="25-100"
                                                   name="desc" class="form-control" id="modalProductDesc"></textarea>
                                     </div>
                                     <div class="form-group">
@@ -171,7 +171,7 @@ and open the template in the editor.
 
 
         <script>
-             $.validate({
+            $.validate({
             });
             function openModal(title, price, id, desc, available, paymentMethod)
             {
@@ -209,7 +209,10 @@ and open the template in the editor.
             $(document).ready(function () {
                 $('#products').DataTable({
                     "lengthMenu": [[3, 6, 10, -1], [3, 6, 10, "All"]],
-                    "ajax": "api/getPendingProducts.php",
+                    "ajax": {"url": "api/getPendingProducts.php",
+                        "data": {
+                            "businessId": <?php echo $_SESSION['login_user']; ?>
+                        }},
                     "columns": [
                         {"data": "id"},
                         {"data": "Title"},
@@ -243,8 +246,10 @@ and open the template in the editor.
                 });
                 $('#products1').DataTable({
                     "lengthMenu": [[3, 6, 10, -1], [3, 6, 10, "All"]],
-                    "ajax": "api/getPendingProducts.php",
-                    "columns": [
+                    "ajax": {"url": "api/getPendingProducts.php",
+                        "data": {
+                            "businessId": <?php echo $_SESSION['login_user']; ?>
+                        }}, "columns": [
                         {"data": "id"},
                         {"data": "Title"},
                         {"data": "Price"},
