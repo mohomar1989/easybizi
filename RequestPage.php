@@ -209,7 +209,7 @@ and open the template in the editor.
             $(document).ready(function () {
                 $('#products').DataTable({
                     "lengthMenu": [[3, 6, 10, -1], [3, 6, 10, "All"]],
-                    "ajax": {"url": "api/getPendingProducts.php",
+                    "ajax": {"url": "api/getActiveProducts.php",
                         "data": {
                             "businessId": <?php echo $_SESSION['login_user']; ?>
                         }},

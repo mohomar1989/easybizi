@@ -3,7 +3,7 @@
 include'dbConnect.php';
 
 $businessId = $_GET['businessId'];
-$query = "SELECT id,Title,Price,PaymentMethod,Description,Available from PRODUCT where BusinessId=$businessId";
+$query = "SELECT id,Title,Price,PaymentMethod,Description,Available from PRODUCT where BusinessId=$businessId and IsActive!=0";
 
 $result = mysqli_query($link, $query);
 
