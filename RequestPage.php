@@ -137,16 +137,16 @@ and open the template in the editor.
                                     <div class="form-group">
                                         <label for="modalProductDesc" class=" col-form-label">Product Availability</label>
                                         <select  name="available" class="form-control" id="modalProductAvailable">
-                                            <option>Available</option>
-                                            <option>Not Avaliable</option>
+                                            <option value="Available">Available</option>
+                                            <option value="Not Avaliable">Not Avaliable</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="modalProductDesc" class=" col-form-label">Payment Method</label>
                                         <select  name="paymentMethod" class="form-control" id="modalProductPayment">
-                                            <option>Cash on delivery</option>
-                                            <option>Transfer/cash</option>
-                                            <option>Bank Transfer</option>
+                                            <option value="Cash on delivery">Cash on delivery</option>
+                                            <option value="Transfer/cash">Transfer/cash</option>
+                                            <option value="Bank Transfer">Bank Transfer</option>
                                         </select>
                                     </div>
                                     <input id="modalProductId" name="productId" type="hidden">
@@ -179,8 +179,8 @@ and open the template in the editor.
                 $("#modalProductDesc").prop("value", desc);
                 $("#modalProductPrice").prop("value", price);
                 $("#modalProductId").prop("value", id);
-                $("#modalProductAvailable").prop("selected", available);
-                $("#modalProductPayment").prop("selected", available);
+                $("#modalProductAvailable").val(available);
+                $("#modalProductPayment").val(paymentMethod);
                 $('#productModal').modal('show');
 
             }
@@ -229,7 +229,7 @@ and open the template in the editor.
                                 desc = desc.replace(/(['"])/g, "\\$1");
                                 var title = row["Title"];
                                 title = title.replace(/(['"])/g, "\\$1");
-                                return "<div class='row  mt-3'> <div class='col-6 text-center'>  <a href='#'><i class='fas fa-lg fa-edit' onclick=\"openModal('" + title + "'," + row["Price"] + "," + row["id"] + ",'" + desc + "')\"></i></a>" +
+                                return "<div class='row  mt-3'> <div class='col-6 text-center'>  <a href='#'><i class='fas fa-lg fa-edit' onclick=\"openModal('" + title + "'," + row["Price"] + "," + row["id"] + ",'" + desc + "','" + row["Available"] + "','" + row["PaymentMethod"] + "')\"></i></a>" +
                                         "</div><div class='col-6 text-center'><a href='#'><i class='fas fa-lg fa-trash-alt' onclick=\"deleteProduct(" + row["id"] + ")\"></i></a></div></div>";
                             }
                         },
