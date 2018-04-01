@@ -63,7 +63,7 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-6">
                     <div class="card mt-2">
-                        <div class="card-header">Active Products</div>
+                        <div class="card-header bg-secondary">Active Products</div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="products" class="table table-striped table-bordered small"  style="width:100%;">
@@ -84,7 +84,7 @@ and open the template in the editor.
                 </div>
                 <div class="col-6">
                     <div class="card mt-2">
-                        <div class="card-header">Pending Products</div>
+                        <div class="card-header bg-secondary">Pending Products</div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="products1" class="table table-striped table-bordered small"  style="width:100%">
