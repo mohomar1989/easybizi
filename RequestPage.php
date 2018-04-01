@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['login_user']))
     header("Location: Index.php");
 ?>
@@ -17,27 +16,15 @@ and open the template in the editor.
         <link href="css/custom.css" rel="stylesheet"/>
         <link href="css/datatables.min.css" rel="stylesheet"/>
         <link href="css/sweetalert.css" rel="stylesheet"/>
-
-
     </head>
     <body>
-
         <div class="container col-12">
-
-
-
-
-
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-
                 <a class="navbar-brand"><img class="img-fluid" src="<?php echo $_SESSION['logo'] ?>" width="50" height="50"/></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#firstNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-
                 <div id="firstNav" class="collapse navbar-collapse">
-
                     <ul class="navbar-nav mr-auto">
                         <li  class="nav-item">
                             <a class="nav-link" href="Profile.php">Profile</a>
@@ -48,43 +35,29 @@ and open the template in the editor.
                         <li class="nav-item">
                             <a class="nav-link active" href="RequestPage.php">Requests Page</a>
                         </li>
-
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li  class="nav-item ">
                             <a class="nav-link" href="api/logout.php">Logout</a>
                         </li>
                     </ul>
-
                 </div>
-
             </nav>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">Request Page</li>
                 </ol>
             </nav>
-
-
-
             <div class="card mt-2">
-
                 <div class="card-header"> Status Information</div>
                 <div class="card-body">
-
-
                     <div class="row">
                         <div class="col-md-12">
                             <label class="text-primary">Profile Status : Pending for approval</label>
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
-
-
             <div class="row">
                 <div class="col-6">
                     <div class="card mt-2">
@@ -149,20 +122,10 @@ and open the template in the editor.
                                     <div class="form-group">
                                         <label for="modalProductDesc" class=" col-form-label">Product Price</label>
                                         <textarea type="text" class="form-control" id="modalProductDesc"></textarea>
-
                                     </div>
                                     <input id="modalProductId" type="hidden">
-
-
-
                                 </div>
                             </div>
-
-
-
-
-
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -172,33 +135,20 @@ and open the template in the editor.
                 </form>
             </div>
         </div>
-
-
-
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/datatables.min.js"></script>
         <script src="js/sweetalert.min.js"></script>
-
-
-
-
-
         <script>
-
             function openModal(title, price, id, desc)
             {
-
                 $("#modalProductTitle").prop("value", title);
                 $("#modalProductDesc").prop("value", desc);
                 $("#modalProductPrice").prop("value", price);
                 $("#modalProductId").prop("value", id);
                 $('#productModal').modal('show');
             }
-
-
-
             function deleteProduct(id)
             {
                 swal({
@@ -212,7 +162,6 @@ and open the template in the editor.
                     $.ajax({
                         dataType: "json",
                         type: "POST",
-
                         data: {"id": id},
                         url: "api/deleteProduct.php",
                         success: function (data) {
@@ -222,9 +171,7 @@ and open the template in the editor.
                     });
                 });
             }
-
             $(document).ready(function () {
-
                 $('#products').DataTable({
                     "lengthMenu": [[3, 6, 10, -1], [3, 6, 10, "All"]],
                     "ajax": "api/getPendingProducts.php",
@@ -251,15 +198,11 @@ and open the template in the editor.
                             "targets": 3,
                             "data": "Thumbnail",
                             "render": function (data, type, row, meta) {
-
                                 return "<img src='" + data + "' width='75' height='75' />";
                             }
                         }
-
-
                     ]
                 });
-
                 $('#products1').DataTable({
                     "lengthMenu": [[3, 6, 10, -1], [3, 6, 10, "All"]],
                     "ajax": "api/getPendingProducts.php",
@@ -286,12 +229,9 @@ and open the template in the editor.
                             "targets": 3,
                             "data": "Thumbnail",
                             "render": function (data, type, row, meta) {
-
                                 return "<img src='" + data + "' width='75' height='75' />";
                             }
                         }
-
-
                     ]
                 });
             });
