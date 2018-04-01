@@ -16,6 +16,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="css/custom.css" rel="stylesheet"/>
         <link href="css/datatables.min.css" rel="stylesheet"/>
+        <link href="css/sweetalert.css" rel="stylesheet"/>
+
 
     </head>
     <body>
@@ -83,34 +85,78 @@ and open the template in the editor.
             </div>
 
 
-            <div class="card mt-2">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card mt-2">
+                        <div class="card-header">Pending Products</div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="products" class="table table-striped table-bordered"  style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th >ID</th>
+                                            <th >Title</th>
+                                            <th >Price</th>
+                                            <th >Thumbnail</th>
+                                            <th>Delete/Edit</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card mt-2">
+                        <div class="card-header">Active Products</div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="products1" class="table table-striped table-bordered"  style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th >ID</th>
+                                            <th >Title</th>
+                                            <th >Price</th>
+                                            <th >Thumbnail</th>
+                                            <th>Delete/Edit</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form method="POST" action="api/updateProduct.php">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="card">
+                                <div class="card-header">
+                                    Edit Product
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label  class=" col-form-label">Product Title</label>
+                                        <input type="text" class="form-control" id="modalProductTitle">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="modalProductPrice" class=" col-form-label">Product Price</label>
+                                        <input type="text" class="form-control" id="modalProductPrice">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="modalProductDesc" class=" col-form-label">Product Price</label>
+                                        <textarea type="text" class="form-control" id="modalProductDesc"></textarea>
 
-                <div class="card-header"> Product Information Status</div>
-                <div class="card-body">
-
-
-                    <div class="row">
-                        <div class="col-md-12 table-responsive">
+                                    </div>
+                                    <input id="modalProductId" type="hidden">
 
 
 
-
-                            <table id="products" class="table table-striped table-bordered"  style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th >ID</th>
-                                        <th >Title</th>
-                                        <th >Price</th>
-
-                                        <th >Thumbnail</th>
-                                    
-                                        <th>Delete/Edit</th>
-
-                                    </tr>
-                                </thead>
-                            </table>
-
-
+                                </div>
+                            </div>
 
 
 
@@ -118,48 +164,14 @@ and open the template in the editor.
 
 
                         </div>
-
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
                     </div>
-
-
-                </div>
+                </form>
             </div>
-
-
-
         </div>
-
-
-
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-   
-      <div class="modal-body">
-        
-          <div class="card">
-              <div class="card-header">
-                  Edit Product
-              </div>
-              
-              <div class="card-body">
-                  
-              </div>
-          </div>
-          
-          
-          
-          
-          
-          
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -167,6 +179,7 @@ and open the template in the editor.
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/datatables.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
 
 
 
@@ -174,57 +187,114 @@ and open the template in the editor.
 
         <script>
 
-function openModal(title,price,id,desc)
-{
-   $('#productModal').modal('show');
-}
+            function openModal(title, price, id, desc)
+            {
+
+                $("#modalProductTitle").prop("value", title);
+                $("#modalProductDesc").prop("value", desc);
+                $("#modalProductPrice").prop("value", price);
+                $("#modalProductId").prop("value", id);
+                $('#productModal').modal('show');
+            }
 
 
 
+            function deleteProduct(id)
+            {
+                swal({
+                    title: "Are you sure you want to delete this product?",
+                    text: "Product will not be recovered after this action",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                }, function () {
+                    $.ajax({
+                        dataType: "json",
+                        type: "POST",
+
+                        data: {"id": id},
+                        url: "api/deleteProduct.php",
+                        success: function (data) {
+                            swal("Successful", "Prodcut has been deleted!", "success");
+                            $('#products').DataTable().ajax.reload();
+                        }
+                    });
+                });
+            }
+
+            $(document).ready(function () {
+
+                $('#products').DataTable({
+                    "lengthMenu": [[3, 6, 10, -1], [3, 6, 10, "All"]],
+                    "ajax": "api/getPendingProducts.php",
+                    "columns": [
+                        {"data": "id"},
+                        {"data": "Title"},
+                        {"data": "Price"},
+                        {"data": "Thumbnail"},
+                        {"data": "Description"}
+                    ],
+                    "columnDefs": [{
+                            "targets": 4,
+                            "data": "Price",
+                            "render": function (data, type, row, meta) {
+                                var desc = row["Description"];
+                                desc = desc.replace(/(['"])/g, "\\$1");
+                                var title = row["Title"];
+                                title = title.replace(/(['"])/g, "\\$1");
+                                return "<div class='row  mt-3'> <div class='col-6 text-center'>  <a href='#'><i class='fas fa-lg fa-edit' onclick=\"openModal('" + title + "'," + row["Price"] + "," + row["id"] + ",'" + desc + "')\"></i></a>" +
+                                        "</div><div class='col-6 text-center'><a href='#'><i class='fas fa-lg fa-trash-alt' onclick=\"deleteProduct(" + row["id"] + ")\"></i></a></div></div>";
+                            }
+                        },
+                        {
+                            "targets": 3,
+                            "data": "Thumbnail",
+                            "render": function (data, type, row, meta) {
+
+                                return "<img src='" + data + "' width='75' height='75' />";
+                            }
+                        }
 
 
+                    ]
+                });
+
+                $('#products1').DataTable({
+                    "lengthMenu": [[3, 6, 10, -1], [3, 6, 10, "All"]],
+                    "ajax": "api/getPendingProducts.php",
+                    "columns": [
+                        {"data": "id"},
+                        {"data": "Title"},
+                        {"data": "Price"},
+                        {"data": "Thumbnail"},
+                        {"data": "Description"}
+                    ],
+                    "columnDefs": [{
+                            "targets": 4,
+                            "data": "Price",
+                            "render": function (data, type, row, meta) {
+                                var desc = row["Description"];
+                                desc = desc.replace(/(['"])/g, "\\$1");
+                                var title = row["Title"];
+                                title = title.replace(/(['"])/g, "\\$1");
+                                return "<div class='row  mt-3'> <div class='col-6 text-center'>  <a href='#'><i class='fas fa-lg fa-edit' onclick=\"openModal('" + title + "'," + row["Price"] + "," + row["id"] + ",'" + desc + "')\"></i></a>" +
+                                        "</div><div class='col-6 text-center'><a href='#'><i class='fas fa-lg fa-trash-alt' onclick=\"deleteProduct(" + row["id"] + ")\"></i></a></div></div>";
+                            }
+                        },
+                        {
+                            "targets": 3,
+                            "data": "Thumbnail",
+                            "render": function (data, type, row, meta) {
+
+                                return "<img src='" + data + "' width='75' height='75' />";
+                            }
+                        }
 
 
-
-
-           $(document).ready(function() {
-               
-    $('#products').DataTable( {
-        "ajax": "api/getPendingProducts.php",
-        "columns": [
-            { "data": "id" },
-            { "data": "Title" },
-            { "data": "Price" },
-            { "data": "Thumbnail" },
-            { "data": "Description" }
-        ],
-        "columnDefs": [ {
-    "targets": 4,
-    "data": "Price",
-    "render": function ( data, type, row, meta ) {
-        var desc = row["Description"];
-        desc = desc.replace(/(['"])/g, "\\$1");
-        var title = row["Title"];
-        title = title.replace(/(['"])/g, "\\$1");
-      return "<div class='row  mt-3'> <div class='col-6 text-center'>  <a href='#'><i class='fas fa-lg fa-edit' onclick=\"openModal('"+title+"',"+row["Price"]+","+row["id"]+",'"+desc+"')\"></i></a>"+
-                  "</div><div class='col-6 text-center'><a href='#'><i class='fas fa-lg fa-trash-alt' onclick=\"openModal('"+title+"',"+row["Price"]+","+row["id"]+",'"+desc+"')\"></i></a></div></div>";
- 
-    }
-  } ,
-  {
-    "targets": 3,
-    "data": "Thumbnail",
-    "render": function ( data, type, row, meta ) {
-       
-      return "<img src='"+data+"' width='75' height='75' />";
-
-    }
-  }
-  
-            
-            ]
-    } );
-} );
+                    ]
+                });
+            });
         </script>
     </body>
 </html>

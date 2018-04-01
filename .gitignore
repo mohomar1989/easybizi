@@ -1,2 +1,6 @@
 /api/dbConnect.php
 /mobApi/dbConnect.php
+/mobApi/forgetPass.php
+/mobApi/sendEmail.php
+/mobApi/sendEmailSignup.php
+/mobApi/testEmail.php
