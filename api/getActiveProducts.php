@@ -3,7 +3,7 @@
 include'dbConnect.php';
 
 $businessId = 60;//$_POST['businessId'];
-$query = "SELECT id,Title,Price,PaymentMethod,Description,Available from PRODUCT";
+$query = "SELECT id,Title,Price,PaymentMethod,Description,Available from PRODUCT ";
 
 $result = mysqli_query($link, $query);
 

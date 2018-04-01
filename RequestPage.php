@@ -16,6 +16,8 @@ and open the template in the editor.
         <link href="css/custom.css" rel="stylesheet"/>
         <link href="css/datatables.min.css" rel="stylesheet"/>
         <link href="css/sweetalert.css" rel="stylesheet"/>
+        <link href="css/theme-default.css" rel="stylesheet"/>
+
     </head>
     <body>
         <div class="container col-12">
@@ -64,13 +66,14 @@ and open the template in the editor.
                         <div class="card-header">Pending Products</div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="products" class="table table-striped table-bordered"  style="width:100%">
+                                <table id="products" class="table table-striped table-bordered small"  style="width:100%;">
                                     <thead>
                                         <tr>
                                             <th >ID</th>
                                             <th >Title</th>
                                             <th >Price</th>
-                                            <th >Thumbnail</th>
+                                            <th>Payment Method</th>
+                                            <th>Availability</th>
                                             <th>Delete/Edit</th>
                                         </tr>
                                     </thead>
@@ -84,13 +87,14 @@ and open the template in the editor.
                         <div class="card-header">Active Products</div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="products1" class="table table-striped table-bordered"  style="width:100%">
+                                <table id="products1" class="table table-striped table-bordered small"  style="width:100%">
                                     <thead>
                                         <tr>
                                             <th >ID</th>
                                             <th >Title</th>
                                             <th >Price</th>
-                                            <th >Thumbnail</th>
+                                            <th>Payment Method</th>
+                                            <th>Availability</th>
                                             <th>Delete/Edit</th>
                                         </tr>
                                     </thead>
@@ -113,17 +117,39 @@ and open the template in the editor.
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label  class=" col-form-label">Product Title</label>
-                                        <input type="text" class="form-control" id="modalProductTitle">
+                                        <input data-validation="required" type="text" name="productTitle" class="form-control" id="modalProductTitle">
                                     </div>
                                     <div class="form-group">
                                         <label for="modalProductPrice" class=" col-form-label">Product Price</label>
-                                        <input type="text" class="form-control" id="modalProductPrice">
+                                        <input type="text"
+                                               
+                                               data-validation="required,number"
+                                               name="productPrice" class="form-control" id="modalProductPrice">
                                     </div>
                                     <div class="form-group">
-                                        <label for="modalProductDesc" class=" col-form-label">Product Price</label>
-                                        <textarea type="text" class="form-control" id="modalProductDesc"></textarea>
+                                        <label for="modalProductDesc" class=" col-form-label">Product Description</label>
+                                        <textarea type="text" 
+                                                  
+                                          data-validation="required,length"
+                                          data-validation-length="25-100"
+                                                  name="desc" class="form-control" id="modalProductDesc"></textarea>
                                     </div>
-                                    <input id="modalProductId" type="hidden">
+                                    <div class="form-group">
+                                        <label for="modalProductDesc" class=" col-form-label">Product Availability</label>
+                                        <select  name="available" class="form-control" id="modalProductAvailable">
+                                            <option>Available</option>
+                                            <option>Not Avaliable</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="modalProductDesc" class=" col-form-label">Payment Method</label>
+                                        <select  name="paymentMethod" class="form-control" id="modalProductPayment">
+                                            <option>Cash on delivery</option>
+                                            <option>Transfer/cash</option>
+                                            <option>Bank Transfer</option>
+                                        </select>
+                                    </div>
+                                    <input id="modalProductId" name="productId" type="hidden">
                                 </div>
                             </div>
                         </div>
@@ -140,14 +166,23 @@ and open the template in the editor.
         <script src="js/bootstrap.min.js"></script>
         <script src="js/datatables.min.js"></script>
         <script src="js/sweetalert.min.js"></script>
+        <script src="js/jquery.form.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+
         <script>
-            function openModal(title, price, id, desc)
+             $.validate({
+            });
+            function openModal(title, price, id, desc, available, paymentMethod)
             {
                 $("#modalProductTitle").prop("value", title);
                 $("#modalProductDesc").prop("value", desc);
                 $("#modalProductPrice").prop("value", price);
                 $("#modalProductId").prop("value", id);
+                $("#modalProductAvailable").prop("selected", available);
+                $("#modalProductPayment").prop("selected", available);
                 $('#productModal').modal('show');
+
             }
             function deleteProduct(id)
             {
@@ -179,11 +214,12 @@ and open the template in the editor.
                         {"data": "id"},
                         {"data": "Title"},
                         {"data": "Price"},
-                        {"data": "Thumbnail"},
-                        {"data": "Description"}
+                        {"data": "PaymentMethod"},
+                        {"data": "Description"},
+                        {"data": "Available"}
                     ],
                     "columnDefs": [{
-                            "targets": 4,
+                            "targets": 5,
                             "data": "Price",
                             "render": function (data, type, row, meta) {
                                 var desc = row["Description"];
@@ -194,13 +230,15 @@ and open the template in the editor.
                                         "</div><div class='col-6 text-center'><a href='#'><i class='fas fa-lg fa-trash-alt' onclick=\"deleteProduct(" + row["id"] + ")\"></i></a></div></div>";
                             }
                         },
+
                         {
-                            "targets": 3,
-                            "data": "Thumbnail",
+                            "targets": 4,
+                            "data": "Available",
                             "render": function (data, type, row, meta) {
-                                return "<img src='" + data + "' width='75' height='75' />";
+                                return row["Available"];
                             }
                         }
+
                     ]
                 });
                 $('#products1').DataTable({
@@ -210,31 +248,75 @@ and open the template in the editor.
                         {"data": "id"},
                         {"data": "Title"},
                         {"data": "Price"},
-                        {"data": "Thumbnail"},
-                        {"data": "Description"}
+                        {"data": "PaymentMethod"},
+                        {"data": "Description"},
+                        {"data": "Available"}
                     ],
                     "columnDefs": [{
-                            "targets": 4,
+                            "targets": 5,
                             "data": "Price",
                             "render": function (data, type, row, meta) {
                                 var desc = row["Description"];
                                 desc = desc.replace(/(['"])/g, "\\$1");
                                 var title = row["Title"];
                                 title = title.replace(/(['"])/g, "\\$1");
-                                return "<div class='row  mt-3'> <div class='col-6 text-center'>  <a href='#'><i class='fas fa-lg fa-edit' onclick=\"openModal('" + title + "'," + row["Price"] + "," + row["id"] + ",'" + desc + "')\"></i></a>" +
+                                return "<div class='row  mt-3'> <div class='col-6 text-center'>  <a href='#'><i class='fas fa-lg fa-edit' onclick=\"openModal('" + title + "'," + row["Price"] + "," + row["id"] + ",'" + desc + "','" + row["Available"] + "','" + row["PaymentMethod"] + "')\"></i></a>" +
                                         "</div><div class='col-6 text-center'><a href='#'><i class='fas fa-lg fa-trash-alt' onclick=\"deleteProduct(" + row["id"] + ")\"></i></a></div></div>";
                             }
                         },
+
                         {
-                            "targets": 3,
-                            "data": "Thumbnail",
+                            "targets": 4,
+                            "data": "Available",
                             "render": function (data, type, row, meta) {
-                                return "<img src='" + data + "' width='75' height='75' />";
+                                return row["Available"];
                             }
                         }
                     ]
                 });
             });
+
+
+
+
+
+
+
+
+
+
+
+            $('form').on('submit', function (e) {
+                e.preventDefault();
+
+
+                swal({
+                    title: "Confirm",
+                    text: "Are you sure you want to update this product?",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                }, function () {
+                    $('form').ajaxSubmit({
+                        dataType: "json",
+                        type: "POST",
+
+                        url: "api/updateProduct.php",
+                        success: function (data) {
+                            swal("Successful", "Prodcut has been updated!", "success");
+                            $('#products').DataTable().ajax.reload();
+                            $('#products1').DataTable().ajax.reload();
+                            $('#productModal').modal('hide');
+
+                        }
+                    });
+                });
+
+
+
+            });
+
         </script>
     </body>
 </html>
