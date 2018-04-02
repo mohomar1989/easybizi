@@ -11,8 +11,7 @@ PRODUCT.Title as ProductTitle,
 PRODUCT.Description as ProductDescription,
 PRODUCT.Price as ProductPrice,
 PRODUCT.Available as ProductAvailability,
-PRODUCT.Thumbnail as ProductThmbnail,
-PRODUCT.PaymentMethod as ProductPaymentMethod
+PRODUCT.Thumbnail as ProductThmbnail
 From
 PRODUCT
 Where 

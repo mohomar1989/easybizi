@@ -75,7 +75,6 @@ and open the template in the editor.
                             <div class="col-12">
                                 <div class="custom-file">
                                     <input
-                                        name="logo"
                                         data-validation-optional="true"
                                         data-validation-allowing="jpg, png" 
                                         data-validation-max-size="500kb"
