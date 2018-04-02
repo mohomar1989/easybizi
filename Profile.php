@@ -355,12 +355,12 @@ and open the template in the editor.
                     <div class="col-3 mx-auto">
                         <div class="row">
                             <div class="col-lg-6 mb-2 ">
-                                <button class="btn btn-success btn-block " type="submit">Submit</button>
+                                <button class="btn btn-primary btn-block " type="submit">Submit</button>
 
 
                             </div>
                             <div class="col-lg-6 mb-2 ">
-                                <button class="btn btn-success btn-block " id="editbtn" onclick="enableForm()" type="button">Edit</button>
+                                <button class="btn btn-primary btn-block " id="editbtn" onclick="enableForm()" type="button">Edit</button>
                             </div>
                         </div>
                     </div>

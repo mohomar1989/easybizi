@@ -207,7 +207,7 @@ and open the template in the editor.
                     <div class="col-3 mx-auto">
                         <div class="row">
                             <div class="col-lg-6 mb-2 mx-auto">
-                                <button class="btn btn-success btn-block " type="submit">Submit</button>
+                                <button class="btn btn-primary btn-block " type="submit">Submit</button>
 
 
                             </div>
