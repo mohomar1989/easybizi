@@ -58,20 +58,34 @@ else
 
 mysqli_query($link, $query);
 
+ 
+    $query = "DELETE FROM BUSINESS_SUBCATEGORY WHERE BusinessId = $businessId";
+    mysqli_query($link, $query);
+
 if(isset($subcats))
+{
+   
+    
 foreach($subcats as $subId)
 {
     
 $query = "INSERT INTO BUSINESS_SUBCATEGORY (Id,BusinessId,SubCategoryId) VALUES (NULL,$businessId,$subId)";
 mysqli_query($link, $query);
 }
+}
+
+  $query = "DELETE FROM BUSINESS_SUBSUBCATEGORY WHERE BusinessId = $businessId";
+    mysqli_query($link, $query);
 
 if(isset($subsubcats))
+{
+  
 foreach($subsubcats as $subsubId)
 {
     
 $query = "INSERT INTO BUSINESS_SUBSUBCATEGORY (Id,BusinessId,SubSubCategoryId) VALUES (NULL,$businessId,$subsubId)";
 mysqli_query($link, $query);
+}
 }
 
 

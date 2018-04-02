@@ -1,0 +1,2 @@
+[02-Apr-2018 06:08:01 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home2/j0qvbg2o/business.easybizi.ae/api/getPendingProducts.php on line 12
+[02-Apr-2018 06:08:02 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home2/j0qvbg2o/business.easybizi.ae/api/getActiveProducts.php on line 12

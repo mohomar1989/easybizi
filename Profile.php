@@ -346,7 +346,7 @@ and open the template in the editor.
                             </div>
                             <div class="col-lg-5">
                                 <label for="subsubcat_to">Selected Sub-Sub-Categories</label>
-                                <select name="subsub[]" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
+                                <select   name="subsub[]" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
                                 </select>
                             </div>
                         </div>

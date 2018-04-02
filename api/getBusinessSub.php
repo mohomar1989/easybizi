@@ -4,7 +4,7 @@ include'dbConnect.php';
 
 $businessId = $_POST['id'];
 
-$query = "select DISTINCT concat(MAIN_CATEGORY.Name,'-',SUB_CATEGORY.Name) as Name"
+$query = "select DISTINCT concat(MAIN_CATEGORY.Name,'-',SUB_CATEGORY.Name) as Name, SUB_CATEGORY.Id as id "
         . "  from MAIN_CATEGORY,SUB_CATEGORY,BUSINESS_SUBCATEGORY"
         . " WHERE BUSINESS_SUBCATEGORY.BusinessId =$businessId "
         . "and SUB_CATEGORY.MainCategory = MAIN_CATEGORY.id "
