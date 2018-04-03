@@ -213,7 +213,7 @@ and open the template in the editor.
                                        data-toggle="popover"
                                        data-trigger="focus"
                                        data-placement="top"
-                                       data-content="Instagram link https://******"
+                                       data-content="Instagram link https://www.instagram.com/******"
                                        placeholder="Instagram Account">
                             </div>
                             <div class="col-lg-6">
