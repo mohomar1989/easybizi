@@ -37,7 +37,7 @@ and open the template in the editor.
 
                     <ul class="navbar-nav  mr-auto">
                         <li  class="nav-item">
-                            <a class="nav-link active ">Profile</a>
+                            <a class="nav-link active " href="Profile.php">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AddProduct.php">Add Product</a>
@@ -635,6 +635,13 @@ and open the template in the editor.
                                             // read the image file as a data URL.
                                             reader.readAsDataURL(this.files[0]);
                                         };
+                                        
+                                                       swal({
+                                                    title: "Welcome!",
+                                                    text: "If you wish to update your profile, please navigate to the bottom of the page and press 'Edit'",
+                                                    type: "info",
+
+                                                });
                                     });
 
 
