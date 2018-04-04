@@ -315,7 +315,7 @@ and open the template in the editor.
                         <div class="row mt-2">
                             <div class="col-lg-5">
 
-                                <label for="subcat">Select a Category A</label>
+                                <label for="subcat">Select a Category</label>
                                 <select data-right="#subcat_to"  id="subcat" class="form-control" size="8" multiple="multiple">
 
                                 </select>
@@ -327,7 +327,7 @@ and open the template in the editor.
                                 <button type="button" id="subcat_leftAll" class="btn btn-block"><i class="fas fa-angle-double-left"></i></button>
                             </div>
                             <div class="col-lg-5">
-                                <label for="subcat_to">Selected Category A</label>
+                                <label for="subcat_to">Selected Categories</label>
                                 <select 
 
 
@@ -343,7 +343,7 @@ and open the template in the editor.
                     <div class="card-body">
                         <div class="row mt-2">
                             <div class="col-lg-5">
-                                <label for="subsubcat">Select a Category B</label>
+                                <label for="subsubcat">Select a Category</label>
                                 <select  id="subsubcat" class="form-control" size="8" multiple="multiple">
 
                                 </select>
@@ -355,7 +355,7 @@ and open the template in the editor.
                                 <button type="button" id="subsubcat_leftAll" class="btn btn-block"><i class="fas fa-angle-double-left"></i></button>
                             </div>
                             <div class="col-lg-5">
-                                <label for="subsubcat_to">Selected Category B</label>
+                                <label for="subsubcat_to">Selected Categories</label>
                                 <select   name="subsub[]" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
                                 </select>
                             </div>
