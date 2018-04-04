@@ -18,7 +18,7 @@ and open the template in the editor.
         <link href="css/waitMe.min.css" rel="stylesheet"/>
         <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
         <link href="css/theme-default.css" rel="stylesheet"/>
-                <link href="css/sweetalert.css" rel="stylesheet"/>
+        <link href="css/sweetalert.css" rel="stylesheet"/>
 
 
     </head>
@@ -27,7 +27,7 @@ and open the template in the editor.
         <div class="container col-12">
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-                <a class="navbar-brand"><img class="img-fluid" src="<?php echo $_SESSION['logo']?>" width="50" height="50"/></a>
+                <a class="navbar-brand"><img class="img-fluid" src="<?php echo $_SESSION['logo'] ?>" width="50" height="50"/></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#firstNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -78,8 +78,11 @@ and open the template in the editor.
 
                                     <input type="text"
                                            name="title"
-                                           class="form-control"
-
+                                           class="form-control text-center"
+                                           data-toggle="popover"
+                                           data-trigger="focus"
+                                           data-placement="top"
+                                           data-content="if you want the price to be upon request put 0"
                                            data-validation="required"
 
                                            placeholder="Enter product title">
@@ -91,9 +94,13 @@ and open the template in the editor.
                             <div class="col-md-6">
                                 <div class="form-group mt-2">
                                     <input type="text"
-                                           class="form-control"
+                                           class="form-control text-center"
                                            name="price"
                                            data-validation="required,number"
+                                           data-toggle="popover"
+                                           data-trigger="focus"
+                                           data-placement="top"
+                                           data-content="if you want the price to be upon request put 0"
                                            placeholder="Enter product price">
 
 
@@ -216,7 +223,7 @@ and open the template in the editor.
                     </div>
                 </div>
 
-            <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
+                <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
 
 
             </form>
@@ -240,7 +247,7 @@ and open the template in the editor.
 
             $.validate({modules: 'file'
             });
-                 $('#desc').restrictLength($('#maxlength'));
+            $('#desc').restrictLength($('#maxlength'));
 
             function triggerLoading()
             {
@@ -263,17 +270,17 @@ and open the template in the editor.
                     success: function (data) {
 
                         $('#container').waitMe("hide");
-                     
-                                                swal({
-                                                    title: "Success",
-                                                    text: "Product Added!",
-                                                    type: "success",
 
-                                                },
-                                                        function (isConfirm) {
+                        swal({
+                            title: "Success",
+                            text: "Product Added!",
+                            type: "success",
 
-                                                            location.reload();
-                                                        });
+                        },
+                                function (isConfirm) {
+
+                                    location.reload();
+                                });
 
                     }
                 }
@@ -293,7 +300,7 @@ and open the template in the editor.
                     msgPlaceholder: "Select up to 5 images for the product"
 
                 });
-           
+
             });
 
 
