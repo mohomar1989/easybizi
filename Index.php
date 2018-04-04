@@ -12,8 +12,8 @@
 
 
 
-        <div class="container" >
-            <div class="row mb-5 mt-4">
+        <div class="container " >
+            <div class="row mb-5 mt-4 ">
                 <div class="col-2 mx-auto">
                     <h1 >
                         <img class="img-fluid" src="img/EasyBizi.jpg" alt="EasyBizi"/>
@@ -36,6 +36,7 @@
                         </div>
 
                         <button class="btn btn-success btn-block " type="submit">Login</button>
+                        <p class="small">Facing an issue while logging in? email us: info@appsolutesolutions.ae</p>
 
                     </form>
                 </div>

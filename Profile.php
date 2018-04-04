@@ -48,7 +48,7 @@ and open the template in the editor.
 
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        
+
                         <li  class="nav-item ">
                             <a class="nav-link" href="api/logout.php">Logout</a>
                         </li>
@@ -75,7 +75,7 @@ and open the template in the editor.
                             <div class="col-12">
                                 <div class="custom-file">
                                     <input
-	 				name="logo"
+                                        name="logo"
                                         data-validation-optional="true"
                                         data-validation-allowing="jpg, png" 
                                         data-validation-max-size="500kb"
@@ -104,6 +104,21 @@ and open the template in the editor.
                                                id="companyName"
                                                class="form-control text-center"
                                                placeholder="Business Name">
+                                        <p class="small">To change it contact : info@appsolutesolutions.ae</p>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <input type="text"
+                                               class="form-control text-center"
+                                               readonly="true"
+                                               id="companyEmail"
+                                               placeholder="Business Email">
+                                        <p class="small">To change it contact : info@appsolutesolutions.ae</p>
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -121,17 +136,10 @@ and open the template in the editor.
                                                data-placement="right"
                                                data-content="Company # e.g 00971*******"
                                                placeholder="Contact Number">
+
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-12">
-                                        <input type="text"
-                                               class="form-control text-center"
-                                               readonly="true"
-                                               id="companyEmail"
-                                               placeholder="Business Email">
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -366,7 +374,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                        <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
+                <input type="hidden" name="businessId" value="<?php echo $_SESSION['login_user']; ?>"/>
             </form>
         </div>
 

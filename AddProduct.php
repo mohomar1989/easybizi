@@ -79,10 +79,9 @@ and open the template in the editor.
                                     <input type="text"
                                            name="title"
                                            class="form-control text-center"
-                                           data-toggle="popover"
+                                           
                                            data-trigger="focus"
                                            data-placement="top"
-                                           data-content="if you want the price to be upon request put 0"
                                            data-validation="required"
 
                                            placeholder="Enter product title">
@@ -292,6 +291,7 @@ and open the template in the editor.
             $(function () {
 
 
+                $('[data-toggle="popover"]').popover();
 
                 $("#productPics").fileinput({
                     showUpload: false,
