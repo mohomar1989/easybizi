@@ -42,7 +42,7 @@ and open the template in the editor.
                                             <th>Payment Method</th>
                                             <th>Availability</th>
                                             <th>Images</th>
-                                            <th>Delete/Edit</th>
+                                            <th>Approve</th>
                                         </tr>
                                     </thead>
                                 </table>
