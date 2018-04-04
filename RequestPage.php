@@ -50,7 +50,7 @@ and open the template in the editor.
                     <li class="breadcrumb-item active" aria-current="page">Request Page</li>
                 </ol>
             </nav>
-            <div class="card mt-2">
+<!--            <div class="card mt-2">
                 <div class="card-header"> Status Information</div>
                 <div class="card-body">
                     <div class="row">
@@ -59,7 +59,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="row">
                 <div class="col-6">
                     <div class="card mt-2">
