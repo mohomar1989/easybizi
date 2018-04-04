@@ -61,7 +61,7 @@ and open the template in the editor.
                 </div>
             </div>-->
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="card mt-2">
                         <div class="card-header">Active Products</div>
                         <div class="card-body">
@@ -82,7 +82,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="card mt-2">
                         <div class="card-header ">Pending Products</div>
                         <div class="card-body">
