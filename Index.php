@@ -36,7 +36,7 @@
                         </div>
 
                         <button class="btn btn-success btn-block " type="submit">Login</button>
-                        <p class="small">Facing an issue while logging in? email us: info@appsolutesolutions.ae</p>
+                        <p class="small mt-2 text-center text-muted">Facing an issue while logging in?<br> Contact us: info@appsolutesolutions.ae</p>
 
                     </form>
                 </div>
