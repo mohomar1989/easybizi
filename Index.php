@@ -22,7 +22,7 @@
 
             </div>
             <div class="row">
-                <div class="col-4 mx-auto">
+                <div class="col-md-4 mx-auto">
                     <div class="text-center">
                         <h4 style="color: #92977E;">Welcome to EasyBizi</h4>
                     </div>
