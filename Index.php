@@ -12,7 +12,7 @@
 
 
 
-        <div class="container " >
+        <div class="container" >
             <div class="row mb-5 mt-4 ">
                 <div class="col-2 mx-auto">
                     <h1 >
@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 mx-auto">
-                    <div class="text-center">
+                    <div class="text-center mb-3">
                         <h4 style="color: #92977E;">Welcome to EasyBizi</h4>
                     </div>
                     <form action="api/login.php" method="POST" id="container">
@@ -46,9 +46,28 @@
         </div>
 
 
+        <footer class="footer bg-primary text-white blue pt-9">
 
 
+            <div class=" py-3 text-center">
+                © 2018 EasyBizi
 
+            </div>
+
+
+        </footer>
+
+        <style>
+
+            .footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+
+                line-height: 10px; /* Vertically center the text there */
+
+            }
+        </style>
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -80,9 +99,9 @@
 
                     success: function (data) {
 
-                        $(container).waitMe("hide"); 
-                                if (data.length == 0)
-                       swal("Opps!", "Invalid username or password", "error");
+                        $(container).waitMe("hide");
+                        if (data.length == 0)
+                            swal("Opps!", "Invalid username or password", "error");
 
                         else
                             window.location.href = "Profile.php";
