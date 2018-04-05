@@ -305,7 +305,7 @@ and open the template in the editor.
 
 
 
-               
+
 
                 <div class="card mt-2">
                     <div class="card-header"> Category A</div>
@@ -332,9 +332,9 @@ and open the template in the editor.
                                 </select>
                             </div>
                         </div>
-                         <div>
-                    <h1 class="small mt-2 text-danger"> Note: If you didn't find your business category under Category A, please check Category B</h1>
-                </div>
+                        <div>
+                            <h1 class="small mt-2 text-danger"> Note: If you didn't find your business category under Category A, please check Category B</h1>
+                        </div>
                     </div>
                 </div>
                 <div class="card mt-2">
@@ -357,9 +357,9 @@ and open the template in the editor.
                                 </select>
                             </div>
                         </div>
-                         <div>
-                    <h1 class="small mt-2 text-danger"> Note: If you didn't find your business category under Category A, please check Category B</h1>
-                </div>
+                        <div>
+                            <h1 class="small mt-2 text-danger"> Note: If you didn't find your business category under Category A, please check Category B</h1>
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-5">
@@ -441,6 +441,8 @@ and open the template in the editor.
                                                 });
 
                                                 $('#myForm').waitMe("hide");
+                                                                                            pageScroll();
+
 
 
 
@@ -588,9 +590,13 @@ and open the template in the editor.
 
                                     }
 
-
+function pageScroll() {
+                                        window.scrollTo(0, document.body.scrollHeight);
+    
+}
 
                                     $(function () {
+
 
                                         loadData();
 
@@ -635,13 +641,16 @@ and open the template in the editor.
                                             // read the image file as a data URL.
                                             reader.readAsDataURL(this.files[0]);
                                         };
-                                        
-                                                       swal({
-                                                    title: "Welcome!",
-                                                    text: "If you wish to update your profile, please navigate to the bottom of the page and press 'Edit'",
-                                                    type: "info",
 
-                                                });
+                                        swal({
+                                            title: "Welcome!",
+                                            text: "If you wish to update your profile, please navigate to the bottom of the page and press 'Edit'",
+                                            type: "info",
+
+                                        }, function()
+                                        {
+
+                                        });
                                     });
 
 
