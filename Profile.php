@@ -187,7 +187,7 @@ and open the template in the editor.
                                        data-validation="custom"
                                        data-validation-regexp="^971\d{9}$"
                                        data-validation-optional="true"
-                                       data-validation-error-msg="Please enter a valid number(e.g 00971xxxxxxxxx)"
+                                       data-validation-error-msg="Please enter a valid number(e.g 971xxxxxxxxx)"
                                        data-toggle="popover"
                                        data-trigger="focus"
                                        data-placement="top"
@@ -305,9 +305,7 @@ and open the template in the editor.
 
 
 
-                <div>
-                    <h1 class="small mt-2 text-danger"> Note: If you didn't find your business category under Category A, please check Category B</h1>
-                </div>
+               
 
                 <div class="card mt-2">
                     <div class="card-header"> Category A</div>
@@ -321,10 +319,8 @@ and open the template in the editor.
                                 </select>
                             </div>
                             <div class="col-lg-2 my-auto">
-                                <button type="button" id="subcat_rightAll" class="btn btn-block"><i class="fas fa-angle-double-right"></i></button>
-                                <button type="button" id="subcat_rightSelected" class="btn btn-block"><i class="fas fa-angle-right"></i></button>
-                                <button type="button" id="subcat_leftSelected" class="btn btn-block"><i class="fas fa-angle-left"></i></button>
-                                <button type="button" id="subcat_leftAll" class="btn btn-block"><i class="fas fa-angle-double-left"></i></button>
+                                <button type="button" id="subcat_rightSelected" class="btn btn-block btn-primary"><i class="fas fa-angle-right"></i></button>
+                                <button type="button" id="subcat_leftSelected" class="btn btn-block btn-primary"><i class="fas fa-angle-left"></i></button>
                             </div>
                             <div class="col-lg-5">
                                 <label for="subcat_to">Selected Categories</label>
@@ -336,6 +332,9 @@ and open the template in the editor.
                                 </select>
                             </div>
                         </div>
+                         <div>
+                    <h1 class="small mt-2 text-danger"> Note: If you didn't find your business category under Category A, please check Category B</h1>
+                </div>
                     </div>
                 </div>
                 <div class="card mt-2">
@@ -349,10 +348,8 @@ and open the template in the editor.
                                 </select>
                             </div>
                             <div class="col-lg-2 my-auto">
-                                <button type="button" id="subsubcat_rightAll" class="btn btn-block"><i class="fas fa-angle-double-right"></i></button>
-                                <button type="button" id="subsubcat_rightSelected" class="btn btn-block"><i class="fas fa-angle-right"></i></button>
-                                <button type="button" id="subsubcat_leftSelected" class="btn btn-block"><i class="fas fa-angle-left"></i></button>
-                                <button type="button" id="subsubcat_leftAll" class="btn btn-block"><i class="fas fa-angle-double-left"></i></button>
+                                <button type="button" id="subsubcat_rightSelected" class="btn btn-block btn-primary"><i class="fas fa-angle-right"></i></button>
+                                <button type="button" id="subsubcat_leftSelected" class="btn btn-block btn-primary"><i class="fas fa-angle-left"></i></button>
                             </div>
                             <div class="col-lg-5">
                                 <label for="subsubcat_to">Selected Categories</label>
@@ -360,10 +357,13 @@ and open the template in the editor.
                                 </select>
                             </div>
                         </div>
+                         <div>
+                    <h1 class="small mt-2 text-danger"> Note: If you didn't find your business category under Category A, please check Category B</h1>
+                </div>
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <div class="col-3 mx-auto">
+                    <div class="col-md-3 mx-auto">
                         <div class="row">
                             <div class="col-lg-6 mb-2 ">
                                 <button class="btn btn-primary btn-block " type="submit">Submit</button>
