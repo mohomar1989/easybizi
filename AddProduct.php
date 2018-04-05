@@ -66,6 +66,9 @@ and open the template in the editor.
 
 
             <form id="container" enctype="multipart/form-data" action="api/addProduct.php" method="post">
+                <div>
+                            <h1 class="small mt-2 text-danger">Note: Please make sure you updated your profile before adding a product</h1>
+                        </div>
                 <div class="card mt-2">
 
                     <div class="card-header">Product Information</div>
