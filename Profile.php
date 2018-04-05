@@ -307,6 +307,7 @@ and open the template in the editor.
 
 
 
+            
                 <div class="card mt-2">
                     <div class="card-header"> Category A</div>
                     <div class="card-body">
@@ -326,6 +327,7 @@ and open the template in the editor.
                                 <label for="subcat_to">Selected Categories</label>
                                 <select 
 
+                                    data-validation="emptySelect"
 
                                     name="sub[]"
                                     id="subcat_to" class="multiselect form-control" size="8" multiple="multiple">
@@ -353,7 +355,9 @@ and open the template in the editor.
                             </div>
                             <div class="col-lg-5">
                                 <label for="subsubcat_to">Selected Categories</label>
-                                <select   name="subsub[]" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
+                                <select 
+                                        data-validation="emptySelect"
+                                        name="subsub[]" id="subsubcat_to" class="form-control" size="8" multiple="multiple">
                                 </select>
                             </div>
                         </div>
@@ -394,7 +398,23 @@ and open the template in the editor.
         <script type="text/javascript">
 
 
-                                    $.validate({modules: 'file'
+$.formUtils.addValidator({
+  name : 'emptySelect',
+  validatorFunction : function(value, $el, config, language, $form) {
+      return !$el.has('option').length == 0 || !$("#subsubcat_to").has('option').length == 0;
+
+      
+  },
+  errorMessage : 'You have to add at least one category either from category A or group B.',
+  errorMessageKey: ''
+}
+);
+
+
+
+
+
+                                    $.validate({modules: 'file, logic'
                                     });
                                     function getCurrentSubCats() {
                                         $.ajax({
