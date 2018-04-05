@@ -401,7 +401,7 @@ and open the template in the editor.
 $.formUtils.addValidator({
   name : 'emptySelect',
   validatorFunction : function(value, $el, config, language, $form) {
-      return !$el.has('option').length == 0 || !$("#subsubcat_to").has('option').length == 0;
+      return !$("#subcat_to").has('option').length == 0 || !$("#subsubcat_to").has('option').length == 0;
 
       
   },
