@@ -275,7 +275,7 @@ and open the template in the editor.
                                        data-trigger="focus"
                                        data-placement="top"
                                        data-content="Google map link https://goo.gl/maps/*******"
-                                       placeholder="Google Maps Link(e.g https://goo.gl/maps/*******)"
+                                       placeholder="Google Maps Link(e.g https://goo.gl/maps/*******)">
                             </div>
                         </div>
                         <div class="row mt-4">
